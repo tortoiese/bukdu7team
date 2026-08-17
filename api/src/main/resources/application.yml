@@ -18,6 +18,11 @@ entry:
     mock: ${ENTRY_AI_MOCK:true}
     model: ${ENTRY_AI_MODEL:claude-sonnet-5}
     timeout-seconds: 8
+  brand:
+    popup-id: ${ENTRY_BRAND_POPUP_ID:MCM-SEONGSU-2026}
+    issued-place: ${ENTRY_BRAND_ISSUED_PLACE:SEOUL / SEONGSU}
+    origin-store-id: ${ENTRY_BRAND_ORIGIN_STORE_ID:KR-SEONGSU}
+    origin-store-name: ${ENTRY_BRAND_ORIGIN_STORE_NAME:성수 팝업}
 
 springdoc:
   swagger-ui:

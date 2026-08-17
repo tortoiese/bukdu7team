@@ -32,6 +32,10 @@ public class EntryException extends RuntimeException {
         return new EntryException(code, message, HttpStatus.UNAUTHORIZED);
     }
 
+    public static EntryException tooManyRequests(String code, String message) {
+        return new EntryException(code, message, HttpStatus.TOO_MANY_REQUESTS);
+    }
+
     public String code() {
         return code;
     }
