@@ -1,0 +1,10 @@
+.env
+.env.local
+*.log
+build/
+dist/
+.gradle/
+node_modules/
+.idea/
+*.iml
+out/
