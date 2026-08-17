@@ -8,13 +8,19 @@ type Dict = Record<string, string>
 
 const dicts: Record<string, Dict> = { ko, en }
 
-export function translate(locale: string, key: string): string {
+function interpolate(template: string, params?: Record<string, string | number>): string {
+  if (!params) return template
+  return template.replace(/\{(\w+)\}/g, (match, name) => (name in params ? String(params[name]) : match))
+}
+
+export function translate(locale: string, key: string, params?: Record<string, string | number>): string {
   const dict = dicts[locale] ?? dicts.en
-  return dict[key] ?? dicts.ko[key] ?? key
+  const template = dict[key] ?? dicts.ko[key] ?? key
+  return interpolate(template, params)
 }
 
 export function useT() {
   const locale = useSessionStore((s) => s.locale)
   const dictLocale = locale === 'ko' ? 'ko' : 'en'
-  return (key: string) => translate(dictLocale, key)
+  return (key: string, params?: Record<string, string | number>) => translate(dictLocale, key, params)
 }
