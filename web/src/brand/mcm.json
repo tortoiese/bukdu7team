@@ -1,0 +1,23 @@
+{
+  "popupId": "MCM-SEONGSU-2026",
+  "popupName": "SEONGSU POP-UP",
+  "originStore": { "storeId": "KR-SEONGSU", "storeName": "성수 팝업", "market": "KR" },
+  "characters": {
+    "HARU": { "name": "하루", "avatar": "/assets/characters/haru.svg" },
+    "HENRY": { "name": "헨리", "avatar": "/assets/characters/henry.svg" },
+    "KAISER": { "name": "카이저", "avatar": "/assets/characters/kaiser.svg" }
+  },
+  "lines": {
+    "SKY_STREAM": "Sky Stream",
+    "HHK": "HHK",
+    "DENIM": "Denim",
+    "M_PUP": "M PUP",
+    "LIFESTYLE": "Lifestyle"
+  },
+  "zones": {
+    "ZONE01": "HERITAGE",
+    "ZONE02": "MATERIAL",
+    "ZONE03": "STYLING",
+    "ZONE04": "PRODUCT"
+  }
+}

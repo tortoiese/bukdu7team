@@ -1,0 +1,7 @@
+import { createBrowserRouter } from 'react-router-dom'
+import Home from '../screens/Home'
+
+// 화면이 늘어날 때마다 이 라우터에 등록한다. 라우트 매핑은 CLAUDE.md 4장 참고.
+export const router = createBrowserRouter([
+  { path: '/', element: <Home /> },
+])

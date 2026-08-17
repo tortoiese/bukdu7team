@@ -1,0 +1,8 @@
+{
+  "common.health.title": "ENTRY",
+  "common.health.checking": "Checking server connection...",
+  "common.health.ok": "Server connected",
+  "common.health.fail": "Could not reach the server",
+  "common.loading": "PROCESSING",
+  "common.marketSwitch": "Switch market / language"
+}

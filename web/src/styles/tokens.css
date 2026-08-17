@@ -1,0 +1,127 @@
+/*
+ * tokens.css — ENTRY 디자인 토큰 단일 출처
+ * docs/DESIGN_SYSTEM.md 2~4장 그대로. 여기 없는 색·폰트·간격을 컴포넌트에서 새로 만들지 않는다.
+ */
+
+:root {
+  /* 기본면 — 여권 표지 / 내지 */
+  --ink-900: #14140f; /* 표지. 본문 배경 아님 */
+  --ink-700: #2b2b24; /* 최상위 텍스트 */
+  --graphite: #6b6a60; /* 보조 텍스트, 라벨 */
+  --hairline: #c9c4b6; /* 괘선 1px */
+  --bone-100: #e6e2d7; /* 내지 음영 */
+  --bone-050: #f1eee6; /* 기본 배경 */
+
+  /* 액센트 — 면적 최소, 화면당 1~2회 */
+  --stamp: #26356e; /* 입국 도장 잉크 블루. 승인·완료 */
+  --seal: #a8332a; /* 검인 적색. 미해결·주의. 전체 화면 1개 이하 */
+  --cognac: #7a4a21; /* 브랜드 액센트. 활성 상태, 진행 게이지 */
+
+  /* 폰트 */
+  --font-display: 'Archivo', 'Noto Sans KR', sans-serif;
+  --font-body: 'Archivo', 'Noto Sans KR', sans-serif;
+  --font-mono: 'Courier Prime', 'Noto Sans KR', monospace;
+
+  /* 간격 — 4px 배수 */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-12: 48px;
+
+  /* 레이아웃 */
+  --mobile-max: 402px;
+  --gutter: 20px;
+}
+
+@theme {
+  --color-ink-900: var(--ink-900);
+  --color-ink-700: var(--ink-700);
+  --color-graphite: var(--graphite);
+  --color-hairline: var(--hairline);
+  --color-bone-100: var(--bone-100);
+  --color-bone-050: var(--bone-050);
+  --color-stamp: var(--stamp);
+  --color-seal: var(--seal);
+  --color-cognac: var(--cognac);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  --spacing-1: var(--sp-1);
+  --spacing-2: var(--sp-2);
+  --spacing-3: var(--sp-3);
+  --spacing-4: var(--sp-4);
+  --spacing-6: var(--sp-6);
+  --spacing-8: var(--sp-8);
+  --spacing-12: var(--sp-12);
+}
+
+/* 타입 스케일 — 모바일 402px 기준. docs/DESIGN_SYSTEM.md 3장 */
+.t-display-l {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 34px;
+  letter-spacing: -0.02em;
+}
+
+.t-display-m {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+}
+
+.t-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 23px;
+}
+
+.t-body-s {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.t-label {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.t-mrz {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* 키보드 포커스 링 — 절대 제거하지 않는다 */
+:focus-visible {
+  outline: 2px solid var(--stamp);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

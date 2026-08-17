@@ -1,0 +1,8 @@
+{
+  "common.health.title": "ENTRY",
+  "common.health.checking": "서버 연결 확인 중...",
+  "common.health.ok": "서버 연결됨",
+  "common.health.fail": "서버에 연결할 수 없습니다",
+  "common.loading": "PROCESSING",
+  "common.marketSwitch": "시장/언어 전환"
+}
