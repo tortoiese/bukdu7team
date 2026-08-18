@@ -2,6 +2,7 @@
 .env.local
 *.log
 build/
+bin/
 dist/
 .gradle/
 node_modules/
