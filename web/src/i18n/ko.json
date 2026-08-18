@@ -86,5 +86,16 @@
   "p6.handoffTitle": "대화가 끝났습니다.",
   "p6.handoffBody": "매장 직원에게 남은 궁금증을 확인해보세요.",
   "p6.criteriaTitle": "정리된 결정 기준",
-  "p6.loadFail": "대화를 시작하지 못했습니다. 다시 시도하거나 매장 직원을 호출하세요."
+  "p6.loadFail": "대화를 시작하지 못했습니다. 다시 시도하거나 매장 직원을 호출하세요.",
+
+  "p8.title": "사전 등록",
+  "p8.interestedLines": "관심 라인",
+  "p8.consent": "연락 수단 저장 및 사전 등록에 동의합니다.",
+  "p8.submit": "등록하기",
+  "p8.benefit": "전용 시간대 우선 입장",
+  "p8.doneTitle": "등록이 완료되었습니다.",
+  "p8.slotLabel": "혜택",
+  "p8.codeLabel": "등록 코드",
+  "p8.timeWindowLabel": "입장 시간대",
+  "p8.registerFail": "등록하지 못했습니다. 다시 시도해주세요."
 }

@@ -1,0 +1,255 @@
+[
+  {
+    "productId": "SKY-STREAM-W260",
+    "line": "Sky Stream",
+    "displayName": "스카이 스트림 백팩 화이트 260",
+    "material": "코티드 캔버스",
+    "weightGram": 780,
+    "sizeLocal": "26cm",
+    "sizeOrigin": "260",
+    "craftNotes": [
+      { "heading": "실루엣 의도", "body": "이동 중 무게중심이 흔들리지 않도록 상단 폭을 좁히고 하단을 넓힌 사다리꼴 구조로 설계했습니다." },
+      { "heading": "소재 선택", "body": "표면에 코팅을 더해 오염에 강하고, 젖은 천으로 닦아내는 방식으로 관리할 수 있습니다." }
+    ]
+  },
+  {
+    "productId": "SKY-STREAM-B260",
+    "line": "Sky Stream",
+    "displayName": "스카이 스트림 백팩 블랙 260",
+    "material": "코티드 캔버스",
+    "weightGram": 780,
+    "sizeLocal": "26cm",
+    "sizeOrigin": "260",
+    "craftNotes": [
+      { "heading": "실루엣 의도", "body": "이동 중 무게중심이 흔들리지 않도록 상단 폭을 좁히고 하단을 넓힌 사다리꼴 구조로 설계했습니다." },
+      { "heading": "색상 관리", "body": "짙은 컬러는 표면 스크래치가 상대적으로 눈에 덜 띄어 매일 드는 용도에 적합합니다." }
+    ]
+  },
+  {
+    "productId": "SKY-STREAM-W300",
+    "line": "Sky Stream",
+    "displayName": "스카이 스트림 백팩 화이트 300",
+    "material": "코티드 캔버스",
+    "weightGram": 860,
+    "sizeLocal": "30cm",
+    "sizeOrigin": "300",
+    "craftNotes": [
+      { "heading": "수납 구조", "body": "260 대비 폭을 4cm 늘려 13인치 노트북과 보조 파우치를 함께 수납할 수 있습니다." },
+      { "heading": "소재 선택", "body": "표면에 코팅을 더해 오염에 강하고, 젖은 천으로 닦아내는 방식으로 관리할 수 있습니다." }
+    ]
+  },
+  {
+    "productId": "SKY-STREAM-B300",
+    "line": "Sky Stream",
+    "displayName": "스카이 스트림 백팩 블랙 300",
+    "material": "코티드 캔버스",
+    "weightGram": 860,
+    "sizeLocal": "30cm",
+    "sizeOrigin": "300",
+    "craftNotes": [
+      { "heading": "수납 구조", "body": "260 대비 폭을 4cm 늘려 13인치 노트북과 보조 파우치를 함께 수납할 수 있습니다." },
+      { "heading": "색상 관리", "body": "짙은 컬러는 표면 스크래치가 상대적으로 눈에 덜 띄어 매일 드는 용도에 적합합니다." }
+    ]
+  },
+  {
+    "productId": "HHK-TOTE-M",
+    "line": "HHK",
+    "displayName": "HHK 토트백 미디엄",
+    "material": "그레인 레더",
+    "weightGram": 620,
+    "sizeLocal": "32cm",
+    "sizeOrigin": "M",
+    "craftNotes": [
+      { "heading": "핸들 각도", "body": "어깨에 걸쳤을 때 손잡이가 몸에 붙도록 5도 각도로 재단했습니다." },
+      { "heading": "내부 구성", "body": "지퍼 포켓 1개, 오픈 포켓 2개로 자주 꺼내는 소지품을 구분해 넣을 수 있습니다." }
+    ]
+  },
+  {
+    "productId": "HHK-TOTE-L",
+    "line": "HHK",
+    "displayName": "HHK 토트백 라지",
+    "material": "그레인 레더",
+    "weightGram": 710,
+    "sizeLocal": "38cm",
+    "sizeOrigin": "L",
+    "craftNotes": [
+      { "heading": "적재 용량", "body": "미디엄 대비 폭 6cm를 늘려 서류 파일이 눕지 않고 세워집니다." },
+      { "heading": "내부 구성", "body": "지퍼 포켓 1개, 오픈 포켓 2개로 자주 꺼내는 소지품을 구분해 넣을 수 있습니다." }
+    ]
+  },
+  {
+    "productId": "HHK-CROSS-S",
+    "line": "HHK",
+    "displayName": "HHK 크로스백 스몰",
+    "material": "그레인 레더",
+    "weightGram": 340,
+    "sizeLocal": "18cm",
+    "sizeOrigin": "S",
+    "craftNotes": [
+      { "heading": "스트랩 길이", "body": "탈부착 스트랩으로 크로스와 숄더 두 가지 방식으로 멜 수 있습니다." },
+      { "heading": "무게 배분", "body": "금속 장식을 최소화해 소형 사이즈에서도 무게 부담을 줄였습니다." }
+    ]
+  },
+  {
+    "productId": "HHK-CROSS-M",
+    "line": "HHK",
+    "displayName": "HHK 크로스백 미디엄",
+    "material": "그레인 레더",
+    "weightGram": 420,
+    "sizeLocal": "22cm",
+    "sizeOrigin": "M",
+    "craftNotes": [
+      { "heading": "스트랩 길이", "body": "탈부착 스트랩으로 크로스와 숄더 두 가지 방식으로 멜 수 있습니다." },
+      { "heading": "수납 구조", "body": "태블릿 미니 사이즈까지 들어가는 내부 구획을 추가했습니다." }
+    ]
+  },
+  {
+    "productId": "DENIM-01",
+    "line": "Denim",
+    "displayName": "데님 숄더백",
+    "material": "워시드 데님",
+    "weightGram": 560,
+    "sizeLocal": "28cm",
+    "sizeOrigin": "One Size",
+    "craftNotes": [
+      { "heading": "워싱 방식", "body": "제품마다 워싱 편차가 있어 동일 라인이라도 색감이 조금씩 다릅니다." },
+      { "heading": "내구성", "body": "데님 특성상 사용할수록 자연스럽게 색이 바라며 고유한 톤을 갖게 됩니다." }
+    ]
+  },
+  {
+    "productId": "DENIM-02",
+    "line": "Denim",
+    "displayName": "데님 버킷백",
+    "material": "워시드 데님",
+    "weightGram": 480,
+    "sizeLocal": "24cm",
+    "sizeOrigin": "One Size",
+    "craftNotes": [
+      { "heading": "형태 유지", "body": "바닥에 심지를 넣어 버킷 형태가 무너지지 않도록 했습니다." },
+      { "heading": "워싱 방식", "body": "제품마다 워싱 편차가 있어 동일 라인이라도 색감이 조금씩 다릅니다." }
+    ]
+  },
+  {
+    "productId": "DENIM-03",
+    "line": "Denim",
+    "displayName": "데님 미니백",
+    "material": "워시드 데님",
+    "weightGram": 310,
+    "sizeLocal": "16cm",
+    "sizeOrigin": "One Size",
+    "craftNotes": [
+      { "heading": "휴대성", "body": "여권과 카드지갑 정도가 들어가는 크기로 가벼운 외출용으로 설계했습니다." },
+      { "heading": "워싱 방식", "body": "제품마다 워싱 편차가 있어 동일 라인이라도 색감이 조금씩 다릅니다." }
+    ]
+  },
+  {
+    "productId": "PM-TOTE",
+    "line": "M PUP",
+    "displayName": "M PUP 토트백",
+    "material": "캔버스 + 레더 트림",
+    "weightGram": 540,
+    "sizeLocal": "30cm",
+    "sizeOrigin": "One Size",
+    "craftNotes": [
+      { "heading": "캐릭터 자수", "body": "M PUP 캐릭터를 자수로 넣어 프린트보다 오래가도록 처리했습니다." },
+      { "heading": "일상 사용성", "body": "가볍고 세탁이 쉬운 캔버스 소재로 매일 드는 용도에 맞췄습니다." }
+    ]
+  },
+  {
+    "productId": "PM-POUCH-01",
+    "line": "M PUP",
+    "displayName": "M PUP 파우치",
+    "material": "캔버스",
+    "weightGram": 120,
+    "sizeLocal": "18cm",
+    "sizeOrigin": "One Size",
+    "craftNotes": [
+      { "heading": "활용도", "body": "화장품이나 케이블 등 잡화를 담는 다목적 파우치입니다." },
+      { "heading": "캐릭터 자수", "body": "M PUP 캐릭터를 자수로 넣어 프린트보다 오래가도록 처리했습니다." }
+    ]
+  },
+  {
+    "productId": "PM-CHARM-01",
+    "line": "M PUP",
+    "displayName": "M PUP 참",
+    "material": "레더",
+    "weightGram": 40,
+    "sizeLocal": "7cm",
+    "sizeOrigin": "One Size",
+    "craftNotes": [
+      { "heading": "부착 방식", "body": "가방 손잡이나 지퍼 고리에 걸 수 있는 고리형 부착쇠를 사용했습니다." }
+    ]
+  },
+  {
+    "productId": "PM-CHARM-02",
+    "line": "M PUP",
+    "displayName": "M PUP 참 미니",
+    "material": "레더",
+    "weightGram": 28,
+    "sizeLocal": "5cm",
+    "sizeOrigin": "One Size",
+    "craftNotes": [
+      { "heading": "크기", "body": "참-01보다 작은 미니 사이즈로 카드지갑이나 파우치에도 어울립니다." }
+    ]
+  },
+  {
+    "productId": "LIFESTYLE-MUG-01",
+    "line": "Lifestyle",
+    "displayName": "라이프스타일 머그",
+    "material": "세라믹",
+    "weightGram": 320,
+    "sizeLocal": "350ml",
+    "sizeOrigin": "One Size",
+    "craftNotes": [
+      { "heading": "사용성", "body": "전자레인지와 식기세척기 사용이 가능한 세라믹 소재입니다." }
+    ]
+  },
+  {
+    "productId": "LIFESTYLE-SCARF-01",
+    "line": "Lifestyle",
+    "displayName": "라이프스타일 스카프",
+    "material": "실크",
+    "weightGram": 90,
+    "sizeLocal": "90x90cm",
+    "sizeOrigin": "One Size",
+    "craftNotes": [
+      { "heading": "관리", "body": "드라이클리닝을 권장하며, 직사광선을 피해 보관하면 색이 오래 유지됩니다." }
+    ]
+  },
+  {
+    "productId": "LIFESTYLE-CARDCASE-01",
+    "line": "Lifestyle",
+    "displayName": "라이프스타일 카드케이스",
+    "material": "그레인 레더",
+    "weightGram": 45,
+    "sizeLocal": "10cm",
+    "sizeOrigin": "One Size",
+    "craftNotes": [
+      { "heading": "수납", "body": "카드 6장과 지폐를 함께 넣을 수 있는 슬림 구조입니다." }
+    ]
+  },
+  {
+    "productId": "LIFESTYLE-KEYRING-01",
+    "line": "Lifestyle",
+    "displayName": "라이프스타일 키링",
+    "material": "레더 + 메탈",
+    "weightGram": 35,
+    "sizeLocal": "9cm",
+    "sizeOrigin": "One Size",
+    "craftNotes": [
+      { "heading": "내구성", "body": "메탈 고리 부분은 니켈 프리 도금으로 변색을 줄였습니다." }
+    ]
+  },
+  {
+    "productId": "LIFESTYLE-BELT-01",
+    "line": "Lifestyle",
+    "displayName": "라이프스타일 벨트",
+    "material": "그레인 레더",
+    "weightGram": 180,
+    "sizeLocal": "100cm",
+    "sizeOrigin": "One Size",
+    "craftNotes": [
+      { "heading": "사이즈 조정", "body": "버클 안쪽에 여분 홀을 3개 추가해 허리둘레 변화에 대응합니다." }
+    ]
+  }
+]

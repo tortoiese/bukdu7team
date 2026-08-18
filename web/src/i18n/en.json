@@ -86,5 +86,16 @@
   "p6.handoffTitle": "The conversation has ended.",
   "p6.handoffBody": "Ask a staff member about anything still unclear.",
   "p6.criteriaTitle": "Decision criteria so far",
-  "p6.loadFail": "Could not start the conversation. Retry or call a staff member."
+  "p6.loadFail": "Could not start the conversation. Retry or call a staff member.",
+
+  "p8.title": "Pre-registration",
+  "p8.interestedLines": "Lines of interest",
+  "p8.consent": "I agree to save this contact and pre-register.",
+  "p8.submit": "Register",
+  "p8.benefit": "Priority entry in a dedicated time slot",
+  "p8.doneTitle": "Registration complete.",
+  "p8.slotLabel": "Benefit",
+  "p8.codeLabel": "Registration code",
+  "p8.timeWindowLabel": "Entry window",
+  "p8.registerFail": "Could not register. Please try again."
 }
