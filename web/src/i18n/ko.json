@@ -58,6 +58,10 @@
   "p3.skip": "건너뛰기",
   "p3.continueArchive": "저장 목록 이어보기",
   "p3.linked": "연결했습니다",
+  "p3.emailPlaceholder": "example@domain.com",
+  "p3.phonePlaceholder": "+82 10-0000-0000",
+  "p3.linkError": "연결하지 못했습니다. 나중에 다시 시도할 수 있습니다.",
+  "p3.mrzAccessible": "오늘 살펴본 제품 {count}개, 시장 {market}",
 
   "p4.title": "국경 이전",
   "p4.unresolvedAnswers": "미해결 요인 답변",

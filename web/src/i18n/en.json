@@ -58,6 +58,10 @@
   "p3.skip": "Skip",
   "p3.continueArchive": "Continue to saved items",
   "p3.linked": "Linked",
+  "p3.emailPlaceholder": "example@domain.com",
+  "p3.phonePlaceholder": "+82 10-0000-0000",
+  "p3.linkError": "Could not link. You can try again later.",
+  "p3.mrzAccessible": "{count} product(s) viewed today, market {market}",
 
   "p4.title": "Border Transfer",
   "p4.unresolvedAnswers": "Answers to unresolved factors",
