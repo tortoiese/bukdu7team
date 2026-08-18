@@ -21,6 +21,8 @@
   "p1.savedToast": "패스포트에 저장했습니다",
   "p1.savedToastCount": "SAVED{count}",
   "p1.loadFail": "제품 정보를 불러오지 못했습니다. 다시 시도하거나 매장 직원을 호출하세요.",
+  "p1.staffCalledToast": "직원을 호출했습니다",
+  "p1.mrzAccessible": "구역 {zone}, 스캔 {scanCount}회, 저장 {savedCount}건, 시장 {market}",
 
   "p2.emptyTitle": "아직 패스포트가 없습니다.",
   "p2.emptyBody": "입구 태그를 스캔하면 발급됩니다.",

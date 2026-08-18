@@ -21,6 +21,8 @@
   "p1.savedToast": "Saved to your passport",
   "p1.savedToastCount": "SAVED{count}",
   "p1.loadFail": "Could not load product details. Retry or call a staff member.",
+  "p1.staffCalledToast": "A staff member has been called",
+  "p1.mrzAccessible": "Zone {zone}, scanned {scanCount} times, {savedCount} saved, market {market}",
 
   "p2.emptyTitle": "No passport yet.",
   "p2.emptyBody": "Scan the entry tag to get one issued.",
