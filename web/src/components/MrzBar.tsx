@@ -4,14 +4,16 @@ import { useScramble } from './useScramble'
 interface MrzBarProps {
   lines: [string, string]
   accessibleLabel: string
+  scrambleDurationMs?: number
 }
 
-// 하단 고정 여권 기계판독영역 밴드. 값이 바뀌면 글자 단위로 스크램블 후 확정된다.
+// 하단 고정 여권 기계판독영역 밴드. 값이 바뀌면 글자 단위로 스크램블 후 확정된다(기본 240ms).
+// scrambleDurationMs로 느리게 조정할 수 있다 — P4 국경 이전 MKT<KR→MKT<HK 전환(1.2초) 전용.
 // 장식용이므로 스크린리더에는 aria-hidden 처리하고, 같은 정보를 accessibleLabel로 별도 제공한다.
-export default function MrzBar({ lines, accessibleLabel }: MrzBarProps) {
+export default function MrzBar({ lines, accessibleLabel, scrambleDurationMs }: MrzBarProps) {
   const [collapsed, setCollapsed] = useState(false)
-  const line1 = useScramble(lines[0])
-  const line2 = useScramble(lines[1])
+  const line1 = useScramble(lines[0], scrambleDurationMs)
+  const line2 = useScramble(lines[1], scrambleDurationMs)
 
   return (
     <>

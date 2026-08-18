@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<'
-const DURATION_MS = 240
+const DEFAULT_DURATION_MS = 240
 
 function prefersReducedMotion() {
   return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -11,9 +11,10 @@ function randomChar() {
   return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]
 }
 
-// 값이 바뀔 때 달라진 글자만 무작위로 순환하다가 왼쪽부터 순서대로 확정된다(240ms).
+// 값이 바뀔 때 달라진 글자만 무작위로 순환하다가 왼쪽부터 순서대로 확정된다(기본 240ms).
+// durationMs를 넘기면 느리게 진행할 수 있다 — P4 국경 이전의 1.2초 클라이맥스 전환 전용.
 // prefers-reduced-motion에서는 애니메이션 없이 target을 그대로 반환한다.
-export function useScramble(target: string): string {
+export function useScramble(target: string, durationMs: number = DEFAULT_DURATION_MS): string {
   const reduceMotion = prefersReducedMotion()
   const [display, setDisplay] = useState(target)
   const prevTarget = useRef(target)
@@ -37,7 +38,7 @@ export function useScramble(target: string): string {
 
     const tick = (now: number) => {
       const elapsed = now - start
-      const progress = Math.min(1, elapsed / DURATION_MS)
+      const progress = Math.min(1, elapsed / durationMs)
       const lockedCount = Math.floor(diffIndexes.length * progress)
 
       const chars = target.split('').map((ch, i) => {
@@ -59,7 +60,7 @@ export function useScramble(target: string): string {
     return () => {
       if (frameRef.current) cancelAnimationFrame(frameRef.current)
     }
-  }, [target, reduceMotion])
+  }, [target, reduceMotion, durationMs])
 
   return reduceMotion ? target : display
 }

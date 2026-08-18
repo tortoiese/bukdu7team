@@ -68,7 +68,11 @@
   "p4.sendTimingCaption": "Send timing rationale",
   "p4.transferableDays": "Transferable from Seoul within {days} days",
   "p4.onlineAvailable": "Available to order at the local online store",
+  "p4.outOfStock": "Out of stock",
   "p4.empty": "No saved items to transfer.",
+  "p4.checking": "Checking",
+  "p4.actionConfirmToast": "Request received",
+  "p4.mrzAccessible": "{count} saved, transferring from Seoul to {market}",
 
   "empty.archive": "No saved items yet. Scan a tag at the shelf."
 }
