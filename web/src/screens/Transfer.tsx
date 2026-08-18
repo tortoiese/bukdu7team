@@ -12,6 +12,8 @@ import { useSessionStore } from '../features/session/store'
 import { useMrzStore } from '../features/mrz/store'
 import { buildMrzLine } from '../features/mrz/format'
 import { getTransfer } from '../features/transfer/api'
+import { useDemoStore } from '../features/demo/store'
+import { DEMO_TRANSFER } from '../features/transfer/demoData'
 import type { Market, TransferData, TransferItem } from '../types/api'
 
 const CLIMAX_DURATION_MS = 1200
@@ -84,6 +86,7 @@ export default function Transfer() {
   const sessionMarket = useSessionStore((s) => s.market)
   const sessionReady = useSessionStore((s) => s.ready)
   const setMrz = useMrzStore((s) => s.set)
+  const isDemo = useDemoStore((s) => s.isDemo)
   const reduceMotion = useReducedMotion()
   const [searchParams] = useSearchParams()
 
@@ -97,15 +100,21 @@ export default function Transfer() {
   useEffect(() => {
     if (!sessionReady) return
     let cancelled = false
-    getTransfer(targetMarket).then((res) => {
-      if (cancelled) return
-      setData(res)
-      setRevealed(false)
-    })
+    const fetchPromise = isDemo ? Promise.resolve(DEMO_TRANSFER) : getTransfer(targetMarket)
+    fetchPromise
+      .then((res) => {
+        if (cancelled) return
+        setData(res)
+        setRevealed(false)
+      })
+      .catch(() => {
+        // apiRequest가 네트워크 실패 시 데모 모드로 전환하므로, isDemo 의존성으로 이 effect가 재실행되어
+        // 위 분기로 복구된다. 여기서는 화면이 무한 로딩에 멈추지 않도록만 막는다.
+      })
     return () => {
       cancelled = true
     }
-  }, [sessionReady, targetMarket, replayFlag])
+  }, [sessionReady, targetMarket, replayFlag, isDemo])
 
   // 진입 시: MRZ를 KR 상태로 먼저 세팅했다가, 카드 스태거 시작과 동시에 대상 시장으로 1.2초 전환한다.
   // reduced-motion에서는 같은 경로를 지연 0ms로 태워 최종 상태를 즉시 반영한다.

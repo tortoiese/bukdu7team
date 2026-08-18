@@ -12,6 +12,14 @@ npm run dev
 
 `npm run dev`가 웹(5173)·API(8080)를 동시에 띄운다. 웹 첫 화면(`/`)에서 `/api/v1/health` 응답을 확인할 수 있다.
 
+## 시연 순서
+
+1. `/dev/reset`에서 시나리오 프리셋으로 세션을 원하는 상태로 되돌린다("홍콩 고객 3스캔 상태" 추천).
+2. `/dev/qr`에서 QR 시트를 인쇄하거나, 스캔 없이 바로 `/s/{productId}`로 진입해 P1(스캔 결과)을 확인한다.
+3. "패스포트에 저장" → `/z/{zoneId}` QR로 구역 검인 → `/passport`(P2)에서 도장과 열람 권한 단계를 보여준다.
+4. `/recap`(P3) → `/transfer?market=HK`(P4, 클라이맥스: 카드 전환 + MRZ `MKT<KR→MKT<HK` 1.2초 전환)로 이어간다.
+5. 운영자 화면은 `/admin`(D1)과 `/admin/personas`(D2)에서 별도로 보여준다. 네트워크가 끊겨도 `?demo=1`로 화면이 계속 동작한다.
+
 ## 문서
 
 - [`CLAUDE.md`](./CLAUDE.md) — 프로젝트 룰북 (절대 규칙 R1~R8)

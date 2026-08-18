@@ -16,6 +16,8 @@ import { buildMrzLine } from '../features/mrz/format'
 import { getProduct } from '../features/products/api'
 import { postScan } from '../features/scan/api'
 import { saveToArchive } from '../features/archive/api'
+import { useDemoStore } from '../features/demo/store'
+import { DEMO_PRODUCT, DEMO_SCAN } from '../features/scan/demoData'
 import brand from '../brand/mcm.json'
 import type { Locale, Market, ProductData, ScanResponse } from '../types/api'
 
@@ -47,6 +49,7 @@ export default function ScanResult() {
   const ready = useSessionStore((s) => s.ready)
   const setMarket = useSessionStore((s) => s.setMarket)
   const setMrz = useMrzStore((s) => s.set)
+  const isDemo = useDemoStore((s) => s.isDemo)
 
   const [product, setProduct] = useState<ProductData | null>(null)
   const [scan, setScan] = useState<ScanResponse | null>(null)
@@ -55,9 +58,18 @@ export default function ScanResult() {
   const [toast, setToast] = useState<[string, string?] | null>(null)
 
   // 진입 시 1회: 스캔 이벤트 기록(POST /scans). 시장 전환과는 무관하게 한 번만 발생해야 한다.
+  // 데모 모드(?demo=1 또는 네트워크 실패 후 자동 전환)에서는 호출 없이 고정 데이터를 쓴다.
   useEffect(() => {
     if (!ready || !productId) return
     let cancelled = false
+    if (isDemo) {
+      Promise.resolve(DEMO_SCAN).then((res) => {
+        if (!cancelled) setScan(res)
+      })
+      return () => {
+        cancelled = true
+      }
+    }
     postScan({ storeId: brand.originStore.storeId, zoneId, productId, scannedAt: new Date().toISOString() })
       .then((res) => {
         if (!cancelled) setScan(res)
@@ -69,12 +81,20 @@ export default function ScanResult() {
       cancelled = true
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ready, productId])
+  }, [ready, productId, isDemo])
 
   // 제품/재고 조회: 시장이 바뀌면 재고 표기를 다시 가져온다.
   useEffect(() => {
     if (!ready || !productId) return
     let cancelled = false
+    if (isDemo) {
+      Promise.resolve(DEMO_PRODUCT).then((res) => {
+        if (!cancelled) setProduct(res)
+      })
+      return () => {
+        cancelled = true
+      }
+    }
     getProduct(productId, market)
       .then((res) => {
         if (!cancelled) setProduct(res)
@@ -85,7 +105,7 @@ export default function ScanResult() {
     return () => {
       cancelled = true
     }
-  }, [ready, productId, market])
+  }, [ready, productId, market, isDemo])
 
   // 하단 MRZ 밴드: 실제 관측값(구역/스캔 횟수/저장 여부/시장)만 담는다.
   useEffect(() => {
@@ -99,6 +119,12 @@ export default function ScanResult() {
 
   async function handleSave() {
     if (!productId) return
+    if (isDemo) {
+      const next = (savedCount ?? 0) + 1
+      setSavedCount(next)
+      setToast([t('p1.savedToast'), t('p1.savedToastCount', { count: next })])
+      return
+    }
     try {
       const res = await saveToArchive(productId, scan?.scanId)
       setSavedCount(res.savedCount)

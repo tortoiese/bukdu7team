@@ -2,6 +2,7 @@
 // 컴포넌트에서 fetch를 직접 호출하지 않는다. 반드시 이 클라이언트를 통과한다.
 import type { ApiErrorBody, ApiResponse } from '../types/api'
 import { useSessionStore } from './session/store'
+import { useDemoStore } from './demo/store'
 
 const API_BASE = import.meta.env.VITE_API_BASE as string
 
@@ -39,6 +40,8 @@ export async function apiRequest<T>(path: string, options: RequestOptions = {}):
       body: body !== undefined ? JSON.stringify(body) : undefined,
     })
   } catch {
+    // 네트워크 실패 시 자동으로 데모 모드로 강등된다 — 화면은 에러 모달 대신 상단 캡션으로만 알린다.
+    useDemoStore.getState().enableDemo()
     throw new ApiError('NETWORK_ERROR', '네트워크에 연결할 수 없습니다.', 0)
   }
 

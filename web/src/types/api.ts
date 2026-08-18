@@ -51,6 +51,12 @@ export interface ProductStock {
   homeMarket: { market: Market; status: StockStatusCode; storeName: string }
 }
 
+export interface ProductSummary {
+  productId: string
+  displayName: string
+  line: string
+}
+
 export interface ProductData {
   productId: string
   line: string

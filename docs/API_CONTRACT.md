@@ -56,6 +56,13 @@ Request `{ "market": "JP", "locale": "ja" }` → `data`: 세션 객체
 
 ## 2. 제품 · 스캔 (P1)
 
+### `GET /products`
+`/dev/qr` QR 시트 전용 가벼운 목록. 재고 조회 없음.
+Response `data`
+```json
+[{ "productId": "SKY-STREAM-W260", "displayName": "스카이 스트림 백팩 화이트 260", "line": "Sky Stream" }, ...]
+```
+
 ### `GET /products/{productId}?market=HK`
 Response `data`
 ```json
