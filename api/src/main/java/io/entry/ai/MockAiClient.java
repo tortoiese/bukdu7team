@@ -19,6 +19,9 @@ public class MockAiClient implements AiClient {
             case "transfer-message" -> """
                     {"rationale":"체류 마지막 날 이후로 판단해 이 시점으로 이전을 제안합니다.",
                     "answer":"코팅 소재라 물티슈로 닦아 관리할 수 있습니다."}""";
+            case "conversation-system" -> """
+                    {"message":"코팅 캔버스라 오염에는 강하지만, 어떤 점이 더 궁금하신가요?",
+                    "criteria":["소재 관리"],"unresolved":"COLOR_CARE"}""";
             default -> throw new AiUnavailableException("정의되지 않은 목업 프롬프트: " + promptKey);
         };
     }

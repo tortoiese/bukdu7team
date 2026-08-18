@@ -78,5 +78,13 @@
 
   "p5.title": "Saved items",
   "p5.transferCta": "View border transfer",
-  "p5.mrzAccessible": "{count} saved, market {market}"
+  "p5.mrzAccessible": "{count} saved, market {market}",
+
+  "p6.turnsLeft": "{count} turn(s) left",
+  "p6.inputPlaceholder": "Type a message",
+  "p6.send": "Send",
+  "p6.handoffTitle": "The conversation has ended.",
+  "p6.handoffBody": "Ask a staff member about anything still unclear.",
+  "p6.criteriaTitle": "Decision criteria so far",
+  "p6.loadFail": "Could not start the conversation. Retry or call a staff member."
 }

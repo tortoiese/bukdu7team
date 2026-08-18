@@ -191,9 +191,9 @@ export interface ConversationStart {
 }
 
 export interface ConversationReply {
-  reply: { character: CharacterId; message: string }
+  reply: { character: CharacterId; message: string } | null
   turnsRemaining: number
-  extracted: { criteria: string[]; unresolved: UnresolvedCode }
+  extracted: { criteria: string[]; unresolved: UnresolvedCode | null }
   handoffSuggested: boolean
 }
 
