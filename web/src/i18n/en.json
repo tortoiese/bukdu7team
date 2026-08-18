@@ -74,5 +74,9 @@
   "p4.actionConfirmToast": "Request received",
   "p4.mrzAccessible": "{count} saved, transferring from Seoul to {market}",
 
-  "empty.archive": "No saved items yet. Scan a tag at the shelf."
+  "empty.archive": "No saved items yet. Scan a tag at the shelf.",
+
+  "p5.title": "Saved items",
+  "p5.transferCta": "View border transfer",
+  "p5.mrzAccessible": "{count} saved, market {market}"
 }
