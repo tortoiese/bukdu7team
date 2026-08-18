@@ -3,9 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "concurrently -n web,api -c blue,yellow \"npm --prefix web run dev\" \"cd api && ./gradlew bootRun\"",
+    "dev": "concurrently -n web,api -c blue,yellow \"npm --prefix web run dev\" \"cd api && .\\gradlew.bat bootRun\"",
     "dev:web": "npm --prefix web run dev",
-    "dev:api": "cd api && ./gradlew bootRun"
+    "dev:api": "cd api && .\\gradlew.bat bootRun"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"
