@@ -24,6 +24,11 @@ public class MockAiClient implements AiClient {
                     "criteria":["소재 관리"],"unresolved":"COLOR_CARE"}""";
             case "advisor-briefing" -> """
                     {"text":"스카이 스트림을 여러 차례 확인했고 컬러 관리가 미해결 요인입니다."}""";
+            case "persona-simulation" -> """
+                    {"results":[
+                    {"variant":"A","saved":true,"reason":"페르소나의 우선순위와 변형 A의 정보 구성이 맞아떨어집니다.","unresolved":"UNKNOWN"},
+                    {"variant":"B","saved":false,"reason":"변형 B는 페르소나가 중요하게 보는 정보를 충분히 보여주지 않습니다.","unresolved":"UNKNOWN"}
+                    ]}""";
             default -> throw new AiUnavailableException("정의되지 않은 목업 프롬프트: " + promptKey);
         };
     }
