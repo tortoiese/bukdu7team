@@ -10,6 +10,7 @@ import Transfer from '../screens/Transfer'
 import Archive from '../screens/Archive'
 import Talk from '../screens/Talk'
 import Register from '../screens/Register'
+import Advisor from '../screens/Advisor'
 
 // 화면이 늘어날 때마다 이 라우터에 등록한다. 라우트 매핑은 CLAUDE.md 4장 참고.
 export const router = createBrowserRouter([
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       { path: '/archive', element: <Archive /> },
       { path: '/talk/:scanId', element: <Talk /> },
       { path: '/register', element: <Register /> },
+      { path: '/advisor/:grantToken', element: <Advisor /> },
       { path: '/dev/kitchen-sink', element: <KitchenSink /> },
     ],
   },

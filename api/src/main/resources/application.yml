@@ -14,6 +14,8 @@ server:
 entry:
   cors:
     origins: ${ENTRY_CORS_ORIGINS:http://localhost:5173}
+  web:
+    origin: ${ENTRY_WEB_ORIGIN:http://localhost:5173}
   ai:
     mock: ${ENTRY_AI_MOCK:true}
     model: ${ENTRY_AI_MODEL:claude-sonnet-5}

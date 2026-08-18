@@ -22,6 +22,8 @@ public class MockAiClient implements AiClient {
             case "conversation-system" -> """
                     {"message":"코팅 캔버스라 오염에는 강하지만, 어떤 점이 더 궁금하신가요?",
                     "criteria":["소재 관리"],"unresolved":"COLOR_CARE"}""";
+            case "advisor-briefing" -> """
+                    {"text":"스카이 스트림을 여러 차례 확인했고 컬러 관리가 미해결 요인입니다."}""";
             default -> throw new AiUnavailableException("정의되지 않은 목업 프롬프트: " + promptKey);
         };
     }

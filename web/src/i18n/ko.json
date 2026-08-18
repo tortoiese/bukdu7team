@@ -97,5 +97,18 @@
   "p8.slotLabel": "혜택",
   "p8.codeLabel": "등록 코드",
   "p8.timeWindowLabel": "입장 시간대",
-  "p8.registerFail": "등록하지 못했습니다. 다시 시도해주세요."
+  "p8.registerFail": "등록하지 못했습니다. 다시 시도해주세요.",
+
+  "p7.unresolved": "미해결 요인",
+  "p7.savedItems": "저장 목록",
+  "p7.keyPhrases": "핵심 표현",
+  "p7.customerLocale": "고객 언어",
+  "p7.noteLabel": "상담 메모",
+  "p7.notePlaceholder": "메모를 입력하세요",
+  "p7.noteSubmit": "저장",
+  "p7.noteSaved": "저장했습니다",
+  "p7.expiresIn": "만료까지 {time}",
+  "p7.expiredTitle": "열람 권한이 만료되었습니다.",
+  "p7.expiredBody": "고객에게 새 QR 발급을 요청하세요.",
+  "p7.loadFail": "브리핑을 불러오지 못했습니다."
 }
