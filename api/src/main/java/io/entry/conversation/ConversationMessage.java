@@ -1,6 +1,7 @@
 package io.entry.conversation;
 
 import io.entry.common.CharacterId;
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.EnumType;
@@ -12,19 +13,22 @@ public class ConversationMessage {
     public enum Role { CHARACTER, USER }
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private Role role;
 
+    // 컬럼명 character는 H2/ANSI SQL 예약 타입명(CHARACTER)과 충돌해 INSERT 시 SQL 오류를 일으킨다.
     @Enumerated(EnumType.STRING)
-    private CharacterId character;
+    @Column(name = "character_id")
+    private CharacterId characterId;
 
     private String text;
 
     protected ConversationMessage() {
     }
 
-    public ConversationMessage(Role role, CharacterId character, String text) {
+    public ConversationMessage(Role role, CharacterId characterId, String text) {
         this.role = role;
-        this.character = character;
+        this.characterId = characterId;
         this.text = text;
     }
 
@@ -33,7 +37,7 @@ public class ConversationMessage {
     }
 
     public CharacterId getCharacter() {
-        return character;
+        return characterId;
     }
 
     public String getText() {
