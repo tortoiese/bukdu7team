@@ -1,0 +1,42 @@
+# 가비아 클라우드 VM 한 대에 nginx(프론트 정적 파일 + 리버스 프록시) + Spring Boot + Postgres를 올린다.
+# BUILD_STEPS.md Phase 8-5 참고. 로컬에서는 docker compose up --build 로 그대로 검증할 수 있다.
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: entry
+      POSTGRES_USER: entry
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-entry}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  api:
+    build: ./api
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/entry
+      SPRING_DATASOURCE_USERNAME: entry
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-entry}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      ENTRY_AI_MOCK: ${ENTRY_AI_MOCK:-true}
+      ENTRY_AI_MODEL: ${ENTRY_AI_MODEL:-claude-sonnet-5}
+      ENTRY_CORS_ORIGINS: ${ENTRY_CORS_ORIGINS:-http://localhost}
+      ENTRY_WEB_ORIGIN: ${ENTRY_WEB_ORIGIN:-http://localhost}
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./web
+      args:
+        VITE_API_BASE: /api/v1
+    ports:
+      - '80:80'
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

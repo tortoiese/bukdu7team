@@ -149,6 +149,28 @@ SPA 라우팅용 `web/vercel.json`
 - [ ] 홍콩 시장 시뮬레이션: 기기 언어를 중문으로 바꿔 진입 → 언어·통화 전환 확인
 - [ ] Railway 콜드스타트 대비: 발표 10분 전 헬스체크 1회 호출
 
+### 8-5. 대안: 가비아 클라우드 VM (Docker Compose)
+
+해커톤 기간 중 가비아 클라우드 서버(2vCore/4GB, 공인 IP 1개, Docker 가능)를 제공받는 경우 이 경로를 쓴다.
+Railway/Vercel/Neon 대신 **VM 한 대**에 nginx(프론트 정적 파일 서빙 + `/api` 리버스 프록시) + Spring Boot + Postgres를 `docker-compose.yml` 하나로 올린다.
+
+**로컬 검증**
+```bash
+cp .env.example .env   # POSTGRES_PASSWORD, ANTHROPIC_API_KEY 등 채우기
+docker compose up --build
+```
+`http://localhost` 에서 웹, `http://localhost/api/v1/health` 에서 API 확인.
+
+**VM 배포**
+1. VM에 Docker + Docker Compose 설치 (가비아 매뉴얼 참고)
+2. 리포지토리 clone → `.env` 작성 (`POSTGRES_PASSWORD`, `ANTHROPIC_API_KEY`, `ENTRY_CORS_ORIGINS`/`ENTRY_WEB_ORIGIN`은 실제 접속 도메인 또는 공인 IP로)
+3. `docker compose up -d --build`
+4. 공인 IP로 접속 확인. 도메인을 붙일 경우 `ENTRY_CORS_ORIGINS`/`ENTRY_WEB_ORIGIN`을 도메인으로 갱신 후 `docker compose up -d --build` 재실행
+
+**주의**
+- 가비아 클라우드는 8/28(금) 23:59에 서버가 일괄 삭제된다. Postgres 데이터는 `postgres_data` 볼륨에만 있으므로, 연장하지 않으면 그 전에 백업하거나 데모용 더미 데이터임을 감안한다.
+- `ANTHROPIC_API_KEY`를 `.env`에 넣더라도 절대 git에 커밋하지 않는다 — `.env`는 `.gitignore`에 있다.
+
 ---
 
 ## Phase 9 — 데모 리허설
