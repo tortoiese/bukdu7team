@@ -15,8 +15,13 @@ public class RuleGreetingService {
 
     private static final CharacterId[] ROTATION = {CharacterId.HARU, CharacterId.HENRY, CharacterId.KAISER};
 
+    /** 제품ID로부터 결정론적으로 캐릭터를 고른다 — 같은 제품이면 항상 같은 캐릭터가 응대한다. */
+    public static CharacterId characterFor(Product product) {
+        return ROTATION[Math.floorMod(product.productId().hashCode(), ROTATION.length)];
+    }
+
     public GreetingData greet(Product product, IntentSignal intent, int scanCountForProduct) {
-        CharacterId character = ROTATION[Math.floorMod(product.productId().hashCode(), ROTATION.length)];
+        CharacterId character = characterFor(product);
 
         String ordinal = scanCountForProduct >= 3 ? "세 번째" : scanCountForProduct == 2 ? "두 번째" : "";
         String question = switch (intent.unresolved()) {

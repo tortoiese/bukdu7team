@@ -30,19 +30,21 @@ public class TransferService {
     private final ProductCatalog productCatalog;
     private final InventoryViewAssembler inventoryViewAssembler;
     private final IntentService intentService;
-    private final RuleTransferAnswerService answerService;
+    private final RuleTransferAnswerService ruleAnswerService;
+    private final AiTransferAnswerService aiAnswerService;
     private final BrandProperties brandProperties;
 
     public TransferService(SavedItemRepository savedItemRepository, ScanEventRepository scanEventRepository,
                             ProductCatalog productCatalog, InventoryViewAssembler inventoryViewAssembler,
-                            IntentService intentService, RuleTransferAnswerService answerService,
-                            BrandProperties brandProperties) {
+                            IntentService intentService, RuleTransferAnswerService ruleAnswerService,
+                            AiTransferAnswerService aiAnswerService, BrandProperties brandProperties) {
         this.savedItemRepository = savedItemRepository;
         this.scanEventRepository = scanEventRepository;
         this.productCatalog = productCatalog;
         this.inventoryViewAssembler = inventoryViewAssembler;
         this.intentService = intentService;
-        this.answerService = answerService;
+        this.ruleAnswerService = ruleAnswerService;
+        this.aiAnswerService = aiAnswerService;
         this.brandProperties = brandProperties;
     }
 
@@ -57,18 +59,25 @@ public class TransferService {
         Instant lastScanAt = history.isEmpty() ? Instant.now() : history.get(history.size() - 1).getScannedAt();
         Instant recommendedAt = lastScanAt.plus(Duration.ofHours(72));
 
-        List<TransferData.UnresolvedAnswer> unresolvedAnswers = intentService.currentSignal(sessionId)
-                .filter(signal -> signal.unresolved() != UnresolvedCode.UNKNOWN)
-                .flatMap(signal -> answerService.answerFor(signal.unresolved()))
-                .map(List::of)
-                .orElse(List.of());
+        UnresolvedCode unresolvedCode = intentService.currentSignal(sessionId)
+                .map(signal -> signal.unresolved())
+                .filter(code -> code != UnresolvedCode.UNKNOWN)
+                .orElse(null);
+        String question = unresolvedCode == null ? null : ruleAnswerService.questionFor(unresolvedCode).orElse(null);
+
+        String itemListText = items.stream()
+                .map(item -> "- " + item.displayName() + " / " + item.status())
+                .reduce("", (a, b) -> a + b + "\n");
+
+        AiTransferAnswerService.Result result = aiAnswerService.resolve(itemListText, targetMarket, unresolvedCode, question);
+        List<TransferData.UnresolvedAnswer> unresolvedAnswers = result.answer() == null ? List.of() : List.of(result.answer());
 
         return new TransferData(
                 brandProperties.getIssuedPlace(),
                 targetMarket,
                 CurrencyByMarket.of(targetMarket),
                 Instant.now(),
-                new TransferData.SendTiming(recommendedAt, "마지막으로 확인한 시점 이후 체류가 끝났다고 판단해 72시간 뒤로 제안합니다.", false),
+                new TransferData.SendTiming(recommendedAt, result.rationale(), unresolvedAnswers.stream().anyMatch(TransferData.UnresolvedAnswer::aiUsed)),
                 items,
                 unresolvedAnswers,
                 new TransferData.MrzTransition("MKT<" + Market.KR, "MKT<" + targetMarket)

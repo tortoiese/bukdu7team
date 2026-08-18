@@ -27,4 +27,10 @@ public class RuleTransferAnswerService {
         if (qa == null) return Optional.empty();
         return Optional.of(new TransferData.UnresolvedAnswer(code, qa.question(), qa.answer(), false));
     }
+
+    /** AiTransferAnswerService가 프롬프트에 넣을 "관측된 질문" 문구를 여기서 재사용한다. */
+    public Optional<String> questionFor(UnresolvedCode code) {
+        QA qa = ANSWERS.get(code);
+        return qa == null ? Optional.empty() : Optional.of(qa.question());
+    }
 }

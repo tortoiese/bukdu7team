@@ -27,6 +27,7 @@ public class ScanController {
     public ApiResponse<ScanResponse> scan(@Valid @RequestBody ScanRequest request) {
         UUID sessionId = UUID.fromString(RequestContext.sessionId());
         ScanResponse response = scanService.recordScan(sessionId, request);
-        return ApiResponse.of(response, ApiMeta.basic());
+        boolean aiUsed = response.intentSignal().aiUsed();
+        return ApiResponse.of(response, ApiMeta.ai(aiUsed, !aiUsed));
     }
 }

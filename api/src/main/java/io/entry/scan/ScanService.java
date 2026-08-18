@@ -2,8 +2,8 @@ package io.entry.scan;
 
 import io.entry.catalog.Product;
 import io.entry.catalog.ProductCatalog;
+import io.entry.intent.AiIntentService;
 import io.entry.intent.IntentSignal;
-import io.entry.intent.RuleIntentAnalyzer;
 import io.entry.scan.dto.ScanRequest;
 import io.entry.scan.dto.ScanResponse;
 import org.springframework.stereotype.Service;
@@ -18,11 +18,11 @@ public class ScanService {
 
     private final ScanEventRepository scanEventRepository;
     private final ProductCatalog productCatalog;
-    private final RuleIntentAnalyzer intentAnalyzer;
-    private final RuleGreetingService greetingService;
+    private final AiIntentService intentAnalyzer;
+    private final AiGreetingService greetingService;
 
     public ScanService(ScanEventRepository scanEventRepository, ProductCatalog productCatalog,
-                        RuleIntentAnalyzer intentAnalyzer, RuleGreetingService greetingService) {
+                        AiIntentService intentAnalyzer, AiGreetingService greetingService) {
         this.scanEventRepository = scanEventRepository;
         this.productCatalog = productCatalog;
         this.intentAnalyzer = intentAnalyzer;

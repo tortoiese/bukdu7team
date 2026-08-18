@@ -1,5 +1,6 @@
 package io.entry.recap;
 
+import io.entry.archive.AiRecapSummaryService;
 import io.entry.archive.dto.IntentSummary;
 import io.entry.catalog.Product;
 import io.entry.catalog.ProductCatalog;
@@ -40,15 +41,17 @@ public class RecapService {
     private final IntentService intentService;
     private final RecapLinkRepository recapLinkRepository;
     private final BrandProperties brandProperties;
+    private final AiRecapSummaryService aiSummaryService;
 
     public RecapService(ScanEventRepository scanEventRepository, ProductCatalog productCatalog,
                          IntentService intentService, RecapLinkRepository recapLinkRepository,
-                         BrandProperties brandProperties) {
+                         BrandProperties brandProperties, AiRecapSummaryService aiSummaryService) {
         this.scanEventRepository = scanEventRepository;
         this.productCatalog = productCatalog;
         this.intentService = intentService;
         this.recapLinkRepository = recapLinkRepository;
         this.brandProperties = brandProperties;
+        this.aiSummaryService = aiSummaryService;
     }
 
     public RecapData get(UUID sessionId) {
@@ -66,7 +69,11 @@ public class RecapService {
             viewed.add(new RecapData.ViewedProduct(entry.getKey(), product.displayName(), entry.getValue(), order++));
         }
 
-        IntentSummary summary = summarize(viewed);
+        String itemListText = viewed.stream()
+                .map(v -> productCatalog.get(v.productId()))
+                .map(p -> "- " + p.line() + " / " + p.displayName())
+                .reduce("", (a, b) -> a + b + "\n");
+        IntentSummary summary = aiSummaryService.summarize(itemListText, () -> summarizeFallback(viewed));
 
         List<RecapData.UnresolvedFactor> unresolvedFactors = intentService.currentSignal(sessionId)
                 .filter(signal -> signal.unresolved() != UnresolvedCode.UNKNOWN)
@@ -95,7 +102,7 @@ public class RecapService {
         return true;
     }
 
-    private IntentSummary summarize(List<RecapData.ViewedProduct> viewed) {
+    private IntentSummary summarizeFallback(List<RecapData.ViewedProduct> viewed) {
         if (viewed.isEmpty()) {
             return new IntentSummary("아직 살펴본 제품이 없습니다.", false);
         }

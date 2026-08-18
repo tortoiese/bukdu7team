@@ -23,16 +23,18 @@ public class ArchiveService {
     private final ScanEventRepository scanEventRepository;
     private final ProductCatalog productCatalog;
     private final InventoryViewAssembler inventoryViewAssembler;
-    private final RuleArchiveSummaryService summaryService;
+    private final RuleArchiveSummaryService ruleSummaryService;
+    private final AiRecapSummaryService aiSummaryService;
 
     public ArchiveService(SavedItemRepository savedItemRepository, ScanEventRepository scanEventRepository,
                            ProductCatalog productCatalog, InventoryViewAssembler inventoryViewAssembler,
-                           RuleArchiveSummaryService summaryService) {
+                           RuleArchiveSummaryService ruleSummaryService, AiRecapSummaryService aiSummaryService) {
         this.savedItemRepository = savedItemRepository;
         this.scanEventRepository = scanEventRepository;
         this.productCatalog = productCatalog;
         this.inventoryViewAssembler = inventoryViewAssembler;
-        this.summaryService = summaryService;
+        this.ruleSummaryService = ruleSummaryService;
+        this.aiSummaryService = aiSummaryService;
     }
 
     @Transactional
@@ -74,6 +76,11 @@ public class ArchiveService {
                     item.getSavedAtStoreId(), item.getZoneId(), "", stock.homeMarket().status());
         }).toList();
 
-        return new ArchiveListData(data, summaryService.summarize(items));
+        String itemListText = items.stream()
+                .map(item -> productCatalog.get(item.getProductId()))
+                .map(p -> "- " + p.line() + " / " + p.material())
+                .reduce("", (a, b) -> a + b + "\n");
+
+        return new ArchiveListData(data, aiSummaryService.summarize(itemListText, () -> ruleSummaryService.summarize(items)));
     }
 }
