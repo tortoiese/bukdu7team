@@ -58,9 +58,14 @@ export default function PersonaConsole() {
       <div className="mx-auto flex max-w-[1440px] flex-col gap-6">
         <div className="flex items-center justify-between">
           <h1 className="t-display-m">{t('d2.title')}</h1>
-          <Link to="/admin" className="t-label underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
-            {t('d2.viewDashboard')}
-          </Link>
+          <div className="flex items-center gap-6">
+            <Link to="/admin" className="t-label underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+              {t('d2.viewDashboard')}
+            </Link>
+            <Link to="/" className="t-label underline underline-offset-4" style={{ color: 'var(--graphite)' }}>
+              {t('nav.backToMenu')}
+            </Link>
+          </div>
         </div>
 
         {result && (

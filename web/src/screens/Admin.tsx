@@ -81,9 +81,14 @@ export default function Admin() {
       <div className="mx-auto flex max-w-[1440px] flex-col gap-8">
         <div className="flex items-center justify-between">
           <h1 className="t-display-m">{t('d1.title')}</h1>
-          <Link to="/admin/personas" className="t-label underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
-            {t('d1.viewPersonas')}
-          </Link>
+          <div className="flex items-center gap-6">
+            <Link to="/admin/personas" className="t-label underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+              {t('d1.viewPersonas')}
+            </Link>
+            <Link to="/" className="t-label underline underline-offset-4" style={{ color: 'var(--graphite)' }}>
+              {t('nav.backToMenu')}
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-4 gap-6">

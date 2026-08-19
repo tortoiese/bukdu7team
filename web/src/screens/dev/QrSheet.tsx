@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import QRCode from 'qrcode'
 import { getProductList } from '../../features/products/api'
 import brand from '../../brand/mcm.json'
@@ -56,7 +57,12 @@ export default function QrSheet() {
       <style>{PRINT_STYLE}</style>
       <div className="mx-auto max-w-[1000px]">
         <div className="print:hidden mb-6 flex items-center justify-between">
-          <h1 className="t-display-m">ENTRY QR SHEET</h1>
+          <div>
+            <Link to="/" className="t-label underline underline-offset-4" style={{ color: 'var(--graphite)' }}>
+              메뉴로
+            </Link>
+            <h1 className="t-display-m mt-1">ENTRY QR SHEET</h1>
+          </div>
           <button
             onClick={() => window.print()}
             className="t-label h-[44px] border px-4"
