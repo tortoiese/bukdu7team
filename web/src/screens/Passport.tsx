@@ -201,6 +201,15 @@ export default function Passport() {
             {t('p2.viewAll')}
           </Link>
         </HairlineSection>
+
+        <div className="flex flex-col gap-3">
+          <Link to="/recap" className="t-label text-center underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+            {t('nav.viewRecap')}
+          </Link>
+          <Link to="/transfer" className="t-label text-center underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+            {t('nav.viewTransfer')}
+          </Link>
+        </div>
       </div>
 
       {toast && <Toast lines={toast} onDismiss={() => setToast(null)} />}

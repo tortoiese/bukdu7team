@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import MobileFrame from '../components/MobileFrame'
 import GuillocheBg from '../components/GuillocheBg'
 import HairlineSection from '../components/HairlineSection'
@@ -59,6 +60,9 @@ export default function Register() {
               />
             </div>
           </div>
+          <Link to="/" className="t-label text-center underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+            {t('nav.backToMenu')}
+          </Link>
         </div>
       </MobileFrame>
     )

@@ -33,7 +33,7 @@
 **Backend** — Spring Boot 3.3+ / Java 21 / Gradle(Kotlin DSL) / Spring Web / Spring Data JPA / Validation / springdoc-openapi
 **DB** — 로컬 H2(file mode), 배포 PostgreSQL
 **AI** — Anthropic Messages API, `WebClient`로 백엔드에서 호출
-**배포** — Frontend: Vercel / Backend: Railway(Docker) / DB: Neon
+**배포** — 현재는 가비아 클라우드 VM 한 대에 Docker Compose(nginx+api+postgres)로 배포 중(`docker-compose.yml`, `BUILD_STEPS.md` 8-5절). Vercel/Railway/Neon 조합은 대안 경로로 문서만 유지(8-2~8-4절)
 
 새 라이브러리를 추가할 때는 **먼저 이유를 한 줄로 말하고 승인을 받는다.** UI 컴포넌트 라이브러리(MUI, Ant, shadcn 등)는 쓰지 않는다 — 디자인 시스템을 직접 만든다.
 

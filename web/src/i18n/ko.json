@@ -8,6 +8,12 @@
   "common.observedCaption": "관측 기록 기준",
   "common.retry": "다시 시도",
 
+  "nav.viewPassport": "패스포트 보기",
+  "nav.viewRecap": "방문 리캡 보기",
+  "nav.viewTransfer": "국경 이전 보기",
+  "nav.backToArchive": "저장 목록으로",
+  "nav.backToMenu": "메뉴로",
+
   "p1.material": "소재",
   "p1.weight": "무게",
   "p1.size": "사이즈",
@@ -132,6 +138,7 @@
   "d1.actionHints": "운영 지시",
   "d1.loadFail": "대시보드를 불러오지 못했습니다.",
   "d1.empty": "아직 데이터가 없습니다.",
+  "d1.viewPersonas": "페르소나봇 콘솔 보기",
 
   "d2.title": "페르소나봇 콘솔",
   "d2.hypothesis": "가설",
@@ -145,5 +152,6 @@
   "d2.resultUnresolved": "미해결 요인",
   "d2.loadFail": "시뮬레이션을 실행하지 못했습니다.",
   "d2.savedYes": "저장함",
-  "d2.savedNo": "저장 안 함"
+  "d2.savedNo": "저장 안 함",
+  "d2.viewDashboard": "의도 대시보드로"
 }

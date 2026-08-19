@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import Loading from '../components/Loading'
 import { useT } from '../i18n'
@@ -78,7 +79,12 @@ export default function Admin() {
   return (
     <div className="min-h-screen bg-bone-050 px-10 py-8">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-8">
-        <h1 className="t-display-m">{t('d1.title')}</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="t-display-m">{t('d1.title')}</h1>
+          <Link to="/admin/personas" className="t-label underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+            {t('d1.viewPersonas')}
+          </Link>
+        </div>
 
         <div className="grid grid-cols-4 gap-6">
           <KpiTile label={t('d1.totalScans')} value={String(totalScans)} />

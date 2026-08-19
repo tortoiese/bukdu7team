@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import MobileFrame from '../components/MobileFrame'
 import CharacterBubble from '../components/CharacterBubble'
 import HairlineSection from '../components/HairlineSection'
@@ -129,6 +129,9 @@ export default function Talk() {
                 {t('p6.handoffBody')}
               </p>
               <Button variant="secondary">{t('p1.callStaff')}</Button>
+              <Link to="/passport" className="t-label text-center underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+                {t('nav.viewPassport')}
+              </Link>
             </div>
           </HairlineSection>
         ) : (

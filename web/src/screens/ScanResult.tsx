@@ -244,6 +244,9 @@ export default function ScanResult() {
               {t('p1.continueTalk')}
             </Link>
           )}
+          <Link to="/passport" className="t-label text-center underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+            {t('nav.viewPassport')}
+          </Link>
         </div>
       </div>
 

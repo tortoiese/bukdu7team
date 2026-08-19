@@ -160,6 +160,9 @@ export default function Recap() {
         <Link to="/archive">
           <Button variant="secondary">{t('p3.continueArchive')}</Button>
         </Link>
+        <Link to="/passport" className="t-label text-center underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+          {t('nav.viewPassport')}
+        </Link>
       </div>
     </MobileFrame>
   )

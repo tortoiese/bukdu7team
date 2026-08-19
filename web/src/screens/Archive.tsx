@@ -82,6 +82,15 @@ export default function Archive() {
             </Link>
           </>
         )}
+
+        <div className="flex flex-col gap-3">
+          <Link to="/passport" className="t-label text-center underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+            {t('nav.viewPassport')}
+          </Link>
+          <Link to="/recap" className="t-label text-center underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+            {t('nav.viewRecap')}
+          </Link>
+        </div>
       </div>
     </MobileFrame>
   )

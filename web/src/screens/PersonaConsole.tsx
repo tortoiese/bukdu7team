@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import HairlineSection from '../components/HairlineSection'
 import Button from '../components/Button'
 import Loading from '../components/Loading'
@@ -55,7 +56,12 @@ export default function PersonaConsole() {
   return (
     <div className="min-h-screen bg-bone-050 px-10 py-8">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-6">
-        <h1 className="t-display-m">{t('d2.title')}</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="t-display-m">{t('d2.title')}</h1>
+          <Link to="/admin" className="t-label underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+            {t('d2.viewDashboard')}
+          </Link>
+        </div>
 
         {result && (
           <div className="border-t p-4" style={{ borderColor: 'var(--hairline)' }}>

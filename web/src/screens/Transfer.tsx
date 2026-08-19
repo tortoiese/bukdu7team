@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'motion/react'
 import MobileFrame from '../components/MobileFrame'
 import HairlineSection from '../components/HairlineSection'
@@ -214,6 +214,12 @@ export default function Transfer() {
         >
           {t('p4.sendTimingCaption')}: {data.sendTiming.rationale}
         </motion.p>
+
+        <motion.div animate={{ opacity: actionsVisible ? 1 : 0 }} transition={{ duration: 0.3 }}>
+          <Link to="/archive" className="t-label block text-center underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+            {t('nav.backToArchive')}
+          </Link>
+        </motion.div>
       </div>
 
       {toast && <Toast lines={toast} onDismiss={() => setToast(null)} />}

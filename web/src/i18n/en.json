@@ -8,6 +8,12 @@
   "common.observedCaption": "Based on observed activity",
   "common.retry": "Retry",
 
+  "nav.viewPassport": "View passport",
+  "nav.viewRecap": "View visit recap",
+  "nav.viewTransfer": "View border transfer",
+  "nav.backToArchive": "Back to saved items",
+  "nav.backToMenu": "Back to menu",
+
   "p1.material": "Material",
   "p1.weight": "Weight",
   "p1.size": "Size",
@@ -132,6 +138,7 @@
   "d1.actionHints": "Action hints",
   "d1.loadFail": "Could not load the dashboard.",
   "d1.empty": "No data yet.",
+  "d1.viewPersonas": "View persona bot console",
 
   "d2.title": "Persona bot console",
   "d2.hypothesis": "Hypothesis",
@@ -145,5 +152,6 @@
   "d2.resultUnresolved": "Unresolved factor",
   "d2.loadFail": "Could not run the simulation.",
   "d2.savedYes": "Saved",
-  "d2.savedNo": "Not saved"
+  "d2.savedNo": "Not saved",
+  "d2.viewDashboard": "View intent dashboard"
 }
