@@ -2,8 +2,13 @@
 
 CLAUDE.md R5(AI는 장식이 아니다)를 만족하는 5개 지점(AI-1~AI-5)의 실제 구현 상태를 기록한다.
 전부 `io.entry.ai.AiClient` 인터페이스를 통해 호출하며, `entry.ai.mock=true`(기본값)면
-`MockAiClient`가 고정 응답을, `false`면 `AnthropicClient`가 실제 Anthropic Messages API를 호출한다.
+`MockAiClient`가 고정 응답을 반환한다. `mock=false`면 `entry.ai.provider`(기본값 `anthropic`)에 따라
+`AnthropicClient`(Anthropic Messages API) 또는 `OpenAiClient`(OpenAI Chat Completions API) 중
+하나가 실제로 호출된다 — 어느 쪽을 쓰든 도메인 서비스(`Ai*Service`) 코드는 동일하다.
 모든 지점은 실패 시 규칙 기반 폴백을 가진다 — AI가 죽어도 화면은 항상 렌더링된다.
+
+**Provider 전환**: `.env`에서 `ENTRY_AI_MOCK=false` + `ENTRY_AI_PROVIDER=openai` + `OPENAI_API_KEY=...`로 바꾸면
+Claude 대신 OpenAI가 호출된다. 모델명은 `ENTRY_AI_MODEL`(Anthropic)/`ENTRY_AI_OPENAI_MODEL`(OpenAI)로 각각 지정.
 
 ---
 

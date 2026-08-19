@@ -1,28 +1,28 @@
 package io.entry.ai;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 
 /**
- * entry.ai.mock 값에 따라 AiClient 빈을 AnthropicClient 또는 MockAiClient 중 하나로 등록한다.
- * 기본값은 mock=true — ANTHROPIC_API_KEY 없이도 전 화면이 폴백/목업 응답으로 정상 동작해야 한다.
+ * AiClient 빈을 entry.ai.mock / entry.ai.provider 값에 따라 고른다.
+ * 기본값은 mock=true — API 키 없이도 전 화면이 폴백/목업 응답으로 정상 동작해야 한다.
+ * mock=false일 때만 provider(anthropic 기본값 | openai)로 실제 호출 대상을 정한다.
  */
 @Configuration
 public class AiClientConfig {
 
     @Bean
-    @ConditionalOnProperty(prefix = "entry.ai", name = "mock", havingValue = "false")
-    public AiClient anthropicAiClient(WebClient.Builder webClientBuilder, AiProperties properties,
-                                       @Value("${ANTHROPIC_API_KEY:}") String apiKey) {
-        return new AnthropicClient(webClientBuilder, properties, apiKey);
-    }
-
-    @Bean
-    @ConditionalOnProperty(prefix = "entry.ai", name = "mock", havingValue = "true", matchIfMissing = true)
-    public AiClient mockAiClient() {
-        return new MockAiClient();
+    public AiClient aiClient(WebClient.Builder webClientBuilder, AiProperties properties,
+                              @Value("${ANTHROPIC_API_KEY:}") String anthropicApiKey,
+                              @Value("${OPENAI_API_KEY:}") String openAiApiKey) {
+        if (properties.isMock()) {
+            return new MockAiClient();
+        }
+        return switch (properties.getProvider()) {
+            case OPENAI -> new OpenAiClient(webClientBuilder, properties, openAiApiKey);
+            case ANTHROPIC -> new AnthropicClient(webClientBuilder, properties, anthropicApiKey);
+        };
     }
 }

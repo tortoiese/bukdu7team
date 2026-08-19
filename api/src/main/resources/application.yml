@@ -18,7 +18,9 @@ entry:
     origin: ${ENTRY_WEB_ORIGIN:http://localhost:5173}
   ai:
     mock: ${ENTRY_AI_MOCK:true}
+    provider: ${ENTRY_AI_PROVIDER:anthropic}
     model: ${ENTRY_AI_MODEL:claude-sonnet-5}
+    openai-model: ${ENTRY_AI_OPENAI_MODEL:gpt-4o}
     timeout-seconds: 8
   brand:
     popup-id: ${ENTRY_BRAND_POPUP_ID:MCM-SEONGSU-2026}

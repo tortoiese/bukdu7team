@@ -4,15 +4,20 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * AI 호출 설정. entry.ai.mock=true(기본값)면 실제 Anthropic API를 호출하지 않고
+ * AI 호출 설정. entry.ai.mock=true(기본값)면 실제 API를 호출하지 않고
  * MockAiClient가 고정 응답을 반환한다(개발 중 토큰 절약, CLAUDE.md 6장).
+ * mock=false일 때 entry.ai.provider로 Anthropic/OpenAI 중 실제 호출할 곳을 고른다.
  */
 @Component
 @ConfigurationProperties(prefix = "entry.ai")
 public class AiProperties {
 
+    public enum Provider { ANTHROPIC, OPENAI }
+
     private boolean mock = true;
+    private Provider provider = Provider.ANTHROPIC;
     private String model = "claude-sonnet-5";
+    private String openaiModel = "gpt-4o";
     private int timeoutSeconds = 8;
 
     public boolean isMock() {
@@ -23,12 +28,28 @@ public class AiProperties {
         this.mock = mock;
     }
 
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
+
     public String getModel() {
         return model;
     }
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public String getOpenaiModel() {
+        return openaiModel;
+    }
+
+    public void setOpenaiModel(String openaiModel) {
+        this.openaiModel = openaiModel;
     }
 
     public int getTimeoutSeconds() {
