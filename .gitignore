@@ -10,3 +10,7 @@ node_modules/
 *.iml
 out/
 api/data/
+
+# 실제 브랜드(MCM) 저작물 — CLAUDE.md 8장: 절대 커밋/배포하지 않는다
+MCM_BACKPACK.png
+MCM_binnie.png
