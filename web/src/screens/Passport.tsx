@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import MobileFrame from '../components/MobileFrame'
+import PassportCover from '../components/PassportCover'
 import GuillocheBg from '../components/GuillocheBg'
 import { FieldGrid } from '../components/Field'
 import HairlineSection from '../components/HairlineSection'
@@ -49,6 +50,7 @@ export default function Passport() {
   const [issuing, setIssuing] = useState(false)
   const [previewItems, setPreviewItems] = useState<ArchiveItem[]>([])
   const [toast, setToast] = useState<[string, string?] | null>(null)
+  const [coverOpen, setCoverOpen] = useState(false)
   const consumedTierState = useRef(false)
 
   function load() {
@@ -131,8 +133,10 @@ export default function Passport() {
 
   return (
     <MobileFrame>
+      <PassportCover isOpen={coverOpen} onOpen={() => setCoverOpen(true)} passportNo={passport.passportNo} />
       {/* 패스포트 실물 문서 스코프. 다크 앱 크롬과 대비되는 밝은 "내지" 카드로 전체 화면 폭까지 번져 보이게 한다(피그마 P2 참조). */}
       <div
+        aria-hidden={!coverOpen}
         className="theme-light -mx-[var(--gutter)] flex flex-1 flex-col gap-6 px-[var(--gutter)] pb-[64px] pt-6"
         style={{ background: 'var(--bone-050)' }}
       >
