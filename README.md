@@ -20,3 +20,7 @@ npm run dev
 - [`BUILD_STEPS.md`](./BUILD_STEPS.md) — 구축·배포 단계
 
 ## TEAM
+- 이승환 : 풀스택 & 기획
+-
+- 
+-
