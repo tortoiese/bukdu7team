@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>ENTRY Pitch Deck</title>
+<style>
+  @page { size: 13.333in 7.5in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @font-face {
+    font-family: 'system';
+    src: local('Malgun Gothic'), local('Segoe UI');
+  }
+  body {
+    font-family: 'Malgun Gothic', 'Segoe UI', sans-serif;
+    background: #1c140f;
+    color: #ede4d6;
+  }
+  .slide {
+    width: 13.333in;
+    height: 7.5in;
+    max-height: 7.5in;
+    position: relative;
+    break-after: page;
+    break-inside: avoid;
+    page-break-after: always;
+    page-break-inside: avoid;
+    overflow: hidden;
+    padding: 0.7in 0.9in;
+    display: flex;
+    flex-direction: column;
+  }
+  .slide:last-child { break-after: auto; page-break-after: auto; }
+  .label {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #a89478;
+  }
+  .hairline { border-top: 1px solid #3a2e22; }
+  .gold { color: #c89b5c; }
+  .cream-panel {
+    background: #f0e6d2;
+    color: #2b2620;
+  }
+  .cream-panel .label { color: #6b6a60; }
+  .pageno {
+    position: absolute;
+    bottom: 0.4in;
+    right: 0.7in;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #6b5d4a;
+  }
+  .frame {
+    position: absolute;
+    inset: 0.35in;
+    border: 1px solid #3a2e22;
+    pointer-events: none;
+  }
+  h1 {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+  }
+  h2 {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25in;
+  }
+  p.body { font-size: 17px; line-height: 1.6; color: #d8cdb8; }
+  .cream-panel p.body { color: #4a453a; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5in; flex: 1; align-items: start; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.35in; flex: 1; align-items: start; }
+  .card {
+    border: 1px solid #3a2e22;
+    padding: 0.3in;
+    display: flex;
+    flex-direction: column;
+    gap: 0.12in;
+  }
+  .card .num { font-family: 'Courier New', monospace; font-size: 13px; color: #c89b5c; }
+  .card .t { font-size: 19px; font-weight: 700; }
+  .card .d { font-size: 14px; color: #b7ab94; line-height: 1.5; }
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 0.15in;
+    flex: 1;
+  }
+  .flow .step {
+    flex: 1;
+    border: 1px solid #3a2e22;
+    padding: 0.25in 0.2in;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1in;
+    align-items: center;
+  }
+  .flow .step .n {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #c89b5c;
+    letter-spacing: 0.15em;
+  }
+  .flow .step .t { font-size: 15px; font-weight: 700; }
+  .flow .arrow { color: #6b5d4a; font-size: 20px; }
+  .kicker { font-size: 15px; color: #c89b5c; margin-bottom: 0.15in; letter-spacing: 0.02em; }
+  ul.plain { list-style: none; display: flex; flex-direction: column; gap: 0.16in; }
+  ul.plain li { font-size: 17px; line-height: 1.5; padding-left: 0.28in; position: relative; }
+  ul.plain li::before {
+    content: '';
+    position: absolute; left: 0; top: 0.42em;
+    width: 8px; height: 1px; background: #c89b5c;
+  }
+  table.metrics { width: 100%; border-collapse: collapse; }
+  table.metrics td { padding: 0.14in 0; border-bottom: 1px solid #3a2e22; font-size: 15px; }
+  table.metrics td:last-child { text-align: right; font-family: 'Courier New', monospace; color: #c89b5c; }
+  .stamp-mark {
+    width: 78px; height: 78px; border-radius: 50%;
+    border: 1.5px solid #9c6640;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Courier New', monospace; font-size: 11px; color: #9c6640;
+    letter-spacing: 0.08em; text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. COVER -->
+<section class="slide">
+  <div class="frame"></div>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:0.25in;">
+    <span class="label">POPUP INTENT PASSPORT</span>
+    <h1 style="font-size:96px;">ENTRY</h1>
+    <p style="font-size:22px; color:#d8cdb8; max-width:8.5in; line-height:1.5;">
+      매대 태그를 스캔하면, 로그인 없이 그 순간의 구매 의도가 기록됩니다.<br/>
+      고객이 어느 나라로 이동하든 — 그 기록은 현지 재고와 채널로 따라갑니다.
+    </p>
+  </div>
+  <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+    <span class="label">IR PITCH DECK · 2026</span>
+    <span class="label gold">CONFIDENTIAL — DRAFT</span>
+  </div>
+</section>
+
+<!-- 2. PROBLEM -->
+<section class="slide">
+  <div class="frame"></div>
+  <span class="kicker">01 — PROBLEM</span>
+  <h2>매장에서 생긴 구매 의도는, 매장을 나가는 순간 사라집니다.</h2>
+  <div class="grid3">
+    <div class="card">
+      <span class="num">01</span>
+      <span class="t">회원가입은 이탈을 만든다</span>
+      <span class="d">팝업스토어·플래그십에서 로그인·회원가입을 요구하는 순간, 다수의 방문객이 그 자리에서 관심을 접습니다.</span>
+    </div>
+    <div class="card">
+      <span class="num">02</span>
+      <span class="t">여행객의 의도는 국경에서 끊긴다</span>
+      <span class="d">서울에서 본 제품을 홍콩·도쿄로 돌아가서 사고 싶어도, 그 관심을 이어줄 채널이 없습니다.</span>
+    </div>
+    <div class="card">
+      <span class="num">03</span>
+      <span class="t">브랜드는 매대 앞 행동을 모른다</span>
+      <span class="d">어떤 제품을 몇 번 다시 봤는지, 무엇 때문에 망설였는지 — 매장 운영자에게는 보이지 않습니다.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3. SOLUTION -->
+<section class="slide">
+  <div class="frame"></div>
+  <span class="kicker">02 — SOLUTION</span>
+  <h2>ENTRY — 익명 세션 하나로 완결되는 &ldquo;구매 의도의 여권&rdquo;</h2>
+  <div class="grid2">
+    <div>
+      <ul class="plain">
+        <li>회원가입 없이 QR 스캔만으로 즉시 시작 — 익명 세션 토큰이 모든 것을 기억합니다.</li>
+        <li>스캔·재방문·저장 행동이 실시간으로 &ldquo;패스포트&rdquo;에 검인(스탬프)됩니다.</li>
+        <li>국경을 이동하면(시장 전환) 저장한 제품이 현지 재고·채널로 자동 연결됩니다.</li>
+        <li>이메일/전화로 연결하면, 나중에 링크 하나로 같은 세션을 다시 열 수 있습니다.</li>
+      </ul>
+    </div>
+    <div class="cream-panel" style="border:1px solid #3a2e22; padding:0.3in;">
+      <span class="label">FLOW</span>
+      <div style="margin-top:0.2in; display:flex; flex-direction:column; gap:0.18in;">
+        <div style="font-size:15px;">① QR 스캔 → 패스포트 표지 팝업</div>
+        <div style="font-size:15px;">② 웹 접속 → 상품 확인 → 패스포트에 저장</div>
+        <div style="font-size:15px;">③ 세션에 이메일/전화 연결 → 저장 링크 발송</div>
+        <div style="font-size:15px;">④ 국경 이전 → 현지 재고로 구매 의도 연결</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PRODUCT FLOW -->
+<section class="slide">
+  <div class="frame"></div>
+  <span class="kicker">03 — PRODUCT</span>
+  <h2>네 개의 화면으로 완결되는 경험</h2>
+  <div class="flow">
+    <div class="step">
+      <span class="n">P1</span>
+      <span class="t">스캔 결과</span>
+      <span class="d" style="font-size:13px;color:#b7ab94;">매대 태그 스캔 →<br/>제품·재고 확인</span>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <span class="n">P2</span>
+      <span class="t">팝업 패스포트</span>
+      <span class="d" style="font-size:13px;color:#b7ab94;">검인 도장으로<br/>방문 기록 확인</span>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <span class="n">P3</span>
+      <span class="t">방문 리캡</span>
+      <span class="d" style="font-size:13px;color:#b7ab94;">관심 경향 요약 +<br/>연락처 연결</span>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step" style="border-color:#c89b5c;">
+      <span class="n" style="color:#c89b5c;">P4</span>
+      <span class="t gold">국경 이전</span>
+      <span class="d" style="font-size:13px;color:#b7ab94;">저장 목록을<br/>현지 재고로 연결</span>
+    </div>
+  </div>
+</section>
+
+<!-- 5. AI -->
+<section class="slide">
+  <div class="frame"></div>
+  <span class="kicker">04 — AI</span>
+  <h2>장식이 아닌 다섯 지점의 실제 AI 호출</h2>
+  <table class="metrics">
+    <tr><td>AI-1 · 의도 신호 분석 — 스캔 이력에서 &ldquo;사이즈 확정형 / 컬러 비교형&rdquo; 같은 단계·비교축 추론</td><td>P1</td></tr>
+    <tr><td>AI-2 · 캐릭터 인사 + 3턴 대화 — 재스캔 맥락에 맞춘 자연어 응대</td><td>P1 · P6</td></tr>
+    <tr><td>관심 경향 요약 — 방문 중 살펴본 제품을 한 문단으로 정리</td><td>P3 · P5</td></tr>
+    <tr><td>AI-4 · 국경 이전 메시지 — 저장 제품별 맞춤 발송 문구 생성</td><td>P4</td></tr>
+    <tr><td>AI-5 · 어드바이저 브리핑 — 직원용 응대 요약 자동 생성</td><td>P7</td></tr>
+  </table>
+  <p class="body" style="margin-top:0.3in;">모든 호출은 8초 타임아웃 + 규칙 기반 폴백을 갖는다 — AI가 실패해도 화면은 항상 렌더링된다.</p>
+</section>
+
+<!-- 6. WHY NOW -->
+<section class="slide">
+  <div class="frame"></div>
+  <span class="kicker">05 — WHY NOW</span>
+  <h2>팝업스토어는 늘고 있고, 여행 소비는 국경을 넘나든다</h2>
+  <div class="grid2">
+    <div class="card" style="height:100%;">
+      <span class="t" style="font-size:22px;">럭셔리 팝업의 증가</span>
+      <span class="d" style="font-size:15px; line-height:1.7;">단기 팝업스토어는 브랜드가 신규 상권·해외 고객을 테스트하는 표준 전략이 됐다. 하지만 팝업은 태생적으로 &ldquo;일회성 접점&rdquo;이라 방문 기록이 남지 않는다.</span>
+    </div>
+    <div class="card" style="height:100%;">
+      <span class="t" style="font-size:22px;">국경을 넘는 소비자</span>
+      <span class="d" style="font-size:15px; line-height:1.7;">한국에서 본 제품을 홍콩·도쿄로 돌아가 구매하려는 여행객에게 필요한 건 할인이 아니라 &ldquo;그 순간의 기록을 이어주는 다리&rdquo;다.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 7. WHY ENTRY DIFFERENT -->
+<section class="slide">
+  <div class="frame"></div>
+  <span class="kicker">06 — DIFFERENTIATION</span>
+  <h2>할인 쿠폰이 아니라, 접근 권한으로 보상한다</h2>
+  <div class="grid2">
+    <div>
+      <ul class="plain">
+        <li><strong>보상은 언제나 &ldquo;접근 권한&rdquo;</strong> — 최저가·쿠폰 알림 UI를 만들지 않는다. 구역을 더 방문할수록 아카이브 열람, 우선 입장, 선공개 알림 등급이 열린다.</li>
+        <li><strong>능동적 스캔만 기록</strong> — 위치 추적·백그라운드 동선 수집을 하지 않는다. 사용자가 직접 태그를 댄 순간만 데이터가 된다.</li>
+        <li><strong>브랜드 콘텐츠는 완전히 분리</strong> — 캐릭터·카피·컬러는 설정 파일에서 읽는다. 새 브랜드·팝업에 하루 안에 이식할 수 있다.</li>
+      </ul>
+    </div>
+    <div class="cream-panel" style="border:1px solid #3a2e22; padding:0.35in; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.2in;">
+      <div class="stamp-mark">ACCESS<br/>TIER 4/4</div>
+      <span class="label" style="color:#6b6a60;">전용 시간대 · 아카이브 · 선공개 · 다음 팝업 초대</span>
+    </div>
+  </div>
+</section>
+
+<!-- 8. OPERATOR TOOLS -->
+<section class="slide">
+  <div class="frame"></div>
+  <span class="kicker">07 — OPERATOR TOOLS</span>
+  <h2>브랜드에게는 실시간 의도 대시보드</h2>
+  <div class="grid2">
+    <div class="card" style="height:100%;">
+      <span class="t" style="font-size:22px;">D1 · 의도 대시보드</span>
+      <span class="d" style="font-size:15px; line-height:1.7;">총 스캔, 재스캔률, 저장률, 국경 이전 회수율을 실시간 집계. 미해결 요인(사이즈/컬러/휴대성 등) 분포로 어떤 제품에 어떤 정보를 보강해야 하는지 바로 보여준다.</span>
+    </div>
+    <div class="card" style="height:100%;">
+      <span class="t" style="font-size:22px;">D2 · 페르소나봇 콘솔</span>
+      <span class="d" style="font-size:15px; line-height:1.7;">실제 A/B 테스트 없이도, 5종 페르소나로 UI 변형안을 미리 시뮬레이션 — &ldquo;정보 나열형 vs 대화형&rdquo; 중 어느 쪽이 저장으로 이어질지 방향을 잡는다.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 9. ROADMAP -->
+<section class="slide">
+  <div class="frame"></div>
+  <span class="kicker">08 — ROADMAP</span>
+  <h2>다음 단계</h2>
+  <ul class="plain">
+    <li><strong>브랜드 온보딩 셀프서브</strong> — 브랜드 콘텐츠(캐릭터·카피·컬러·구역)를 설정 화면에서 직접 등록, 하루 안에 새 팝업 오픈.</li>
+    <li><strong>실물 재고 연동</strong> — 현재는 더미 재고 데이터. 브랜드 ERP/재고 API와 연동해 국경 이전을 실제 주문으로 완결.</li>
+    <li><strong>AI 자동 번역 확장</strong> — 정적 사전 4개 언어(한/영/중/일)에서, 새 브랜드 콘텐츠도 AI가 즉시 번역해 채우는 경로 추가.</li>
+    <li><strong>다중 팝업 동시 운영</strong> — D1 대시보드를 팝업 단위가 아닌 브랜드 전체 포트폴리오 뷰로 확장.</li>
+  </ul>
+</section>
+
+<!-- 10. CLOSING -->
+<section class="slide">
+  <div class="frame"></div>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:0.3in;">
+    <span class="label gold">THANK YOU</span>
+    <h1 style="font-size:64px;">그 순간의 의도를,<br/>국경 너머까지.</h1>
+    <p class="body" style="font-size:19px; max-width:8in;">ENTRY는 로그인 없는 익명 세션 하나로 매장 안의 관심을 기록하고, 고객이 어디로 이동하든 그 기록을 현지 재고와 채널로 연결합니다.</p>
+  </div>
+  <div class="hairline" style="padding-top:0.25in; display:flex; justify-content:space-between;">
+    <span class="label">팀 정보 · 연락처 — [작성 필요]</span>
+    <span class="label">DEMO — entrypassport.1.201.116.98.sslip.io</span>
+  </div>
+</section>
+
+</body>
+</html>
