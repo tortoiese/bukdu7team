@@ -9,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export default function Button({ variant = 'primary', className = '', children, ...rest }: ButtonProps) {
   const base = 'h-[52px] w-full px-4 text-[13px] tracking-[0.05em] uppercase font-mono transition-opacity'
   const styles: Record<string, string> = {
-    primary: 'bg-ink-900 text-bone-050 disabled:opacity-40',
+    primary: 'bg-cognac text-ink-900 disabled:opacity-40',
     secondary: 'bg-transparent border border-ink-700 text-ink-700 disabled:opacity-40',
     text: 'h-auto w-auto bg-transparent text-ink-700 underline underline-offset-4 disabled:opacity-40',
   }

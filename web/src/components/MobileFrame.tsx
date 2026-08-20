@@ -15,9 +15,9 @@ export default function MobileFrame({ children }: { children: ReactNode }) {
   const isHome = location.pathname === '/'
 
   return (
-    <div className="flex min-h-screen justify-center bg-bone-100">
+    <div className="flex min-h-screen justify-center bg-ink-900">
       <div
-        className="flex min-h-screen w-full flex-col bg-bone-050"
+        className="flex min-h-screen w-full flex-col bg-ink-900"
         style={{ maxWidth: 'var(--mobile-max)', paddingLeft: 'var(--gutter)', paddingRight: 'var(--gutter)' }}
       >
         {(!isHome || isDemo) && (

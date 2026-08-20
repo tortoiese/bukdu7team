@@ -53,7 +53,7 @@ export default function QrSheet() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-bone-050 px-8 py-8">
+    <div className="theme-light min-h-screen bg-bone-050 px-8 py-8">
       <style>{PRINT_STYLE}</style>
       <div className="mx-auto max-w-[1000px]">
         <div className="print:hidden mb-6 flex items-center justify-between">

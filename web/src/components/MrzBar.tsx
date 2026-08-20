@@ -27,6 +27,7 @@ export default function MrzBar({ lines, accessibleLabel, scrambleDurationMs }: M
           maxWidth: 'var(--mobile-max)',
           background: 'var(--ink-900)',
           color: 'var(--bone-050)',
+          borderTop: '1px solid var(--hairline)',
           height: collapsed ? '10px' : '48px',
           transition: 'height 160ms ease',
         }}

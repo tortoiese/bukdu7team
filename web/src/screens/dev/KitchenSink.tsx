@@ -18,7 +18,7 @@ export default function KitchenSink() {
   const [showToast, setShowToast] = useState(false)
 
   return (
-    <div className="mx-auto max-w-[402px] px-5 pb-24 pt-8">
+    <div className="theme-light mx-auto max-w-[402px] bg-bone-050 px-5 pb-24 pt-8">
       <Link to="/" className="t-label underline underline-offset-4" style={{ color: 'var(--graphite)' }}>
         메뉴로
       </Link>

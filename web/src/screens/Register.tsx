@@ -48,7 +48,7 @@ export default function Register() {
       <MobileFrame>
         <div className="flex flex-1 flex-col gap-6 pt-6">
           <p className="t-body">{t('p8.doneTitle')}</p>
-          <div className="relative border p-4" style={{ borderColor: 'var(--hairline)' }}>
+          <div className="theme-light relative border p-4" style={{ background: 'var(--bone-050)', borderColor: 'var(--hairline)' }}>
             <GuillocheBg />
             <div className="relative">
               <FieldGrid

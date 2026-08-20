@@ -183,7 +183,8 @@ export default function ScanResult() {
 
         {scan && <CharacterBubble name={characterName} message={scan.greeting.message} />}
 
-        <div className="flex flex-col gap-4">
+        {/* 제품 정보 카드. 다크 앱 크롬 위 밝은 내지 카드로 띄운다(피그마 P1 참조). */}
+        <div className="theme-light flex flex-col gap-4 border p-4" style={{ background: 'var(--bone-050)', borderColor: 'var(--hairline)' }}>
           <div>
             <p className="t-label" style={{ color: 'var(--graphite)' }}>
               {product.line}
@@ -234,7 +235,16 @@ export default function ScanResult() {
             <Button variant="primary" className="flex-1" onClick={() => void handleSave()}>
               {t('p1.saveButton')}
             </Button>
-            {savedCount !== null && <Stamp label="SAVED" rotationSeed={seedFromString(productId ?? '')} size={44} />}
+            {savedCount !== null && (
+              // 도장은 mix-blend-mode: multiply로 그려져 밝은 종이 위에서만 잉크처럼 보인다.
+              // 다크 화면 위에 찍히므로 도장 뒤에 작은 밝은 패치를 둔다.
+              <span
+                className="inline-flex shrink-0 items-center justify-center rounded-full"
+                style={{ background: 'var(--bone-050)', width: 52, height: 52 }}
+              >
+                <Stamp label="SAVED" rotationSeed={seedFromString(productId ?? '')} size={44} />
+              </span>
+            )}
           </div>
           <Button variant="secondary" onClick={handleCallStaff}>
             {t('p1.callStaff')}

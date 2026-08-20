@@ -65,7 +65,7 @@ export default function Advisor() {
 
   if (loadError) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-bone-050">
+      <div className="flex min-h-screen items-center justify-center bg-ink-900">
         <p className="t-body">{t('p7.loadFail')}</p>
       </div>
     )
@@ -73,7 +73,7 @@ export default function Advisor() {
 
   if (expired) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-3 bg-bone-050 text-center">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-3 bg-ink-900 text-center">
         <p className="t-display-m">{t('p7.expiredTitle')}</p>
         <p className="t-body" style={{ color: 'var(--graphite)' }}>
           {t('p7.expiredBody')}
@@ -84,14 +84,14 @@ export default function Advisor() {
 
   if (!briefing) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-bone-050">
+      <div className="flex min-h-screen items-center justify-center bg-ink-900">
         <Loading label={t('common.loading')} />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-bone-050 px-8 py-8">
+    <div className="min-h-screen bg-ink-900 px-8 py-8">
       <div className="mx-auto flex max-w-[960px] flex-col gap-6">
         <div className="flex items-center justify-between">
           <p className="t-display-l">{briefing.briefing.text}</p>

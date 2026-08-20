@@ -131,7 +131,11 @@ export default function Passport() {
 
   return (
     <MobileFrame>
-      <div className="flex flex-1 flex-col gap-6 pb-[64px] pt-6">
+      {/* 패스포트 실물 문서 스코프. 다크 앱 크롬과 대비되는 밝은 "내지" 카드로 전체 화면 폭까지 번져 보이게 한다(피그마 P2 참조). */}
+      <div
+        className="theme-light -mx-[var(--gutter)] flex flex-1 flex-col gap-6 px-[var(--gutter)] pb-[64px] pt-6"
+        style={{ background: 'var(--bone-050)' }}
+      >
         <div className="relative border p-4" style={{ borderColor: 'var(--hairline)' }}>
           <GuillocheBg />
           <div className="relative">

@@ -42,7 +42,7 @@ export default function Admin() {
 
   if (error) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-bone-050">
+      <div className="theme-light flex min-h-screen items-center justify-center bg-bone-050">
         <p className="t-body">{t('d1.loadFail')}</p>
       </div>
     )
@@ -50,7 +50,7 @@ export default function Admin() {
 
   if (!data) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-bone-050">
+      <div className="theme-light flex min-h-screen items-center justify-center bg-bone-050">
         <Loading label={t('common.loading')} />
       </div>
     )
@@ -77,7 +77,7 @@ export default function Admin() {
   ]
 
   return (
-    <div className="min-h-screen bg-bone-050 px-10 py-8">
+    <div className="theme-light min-h-screen bg-bone-050 px-10 py-8">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-8">
         <div className="flex items-center justify-between">
           <h1 className="t-display-m">{t('d1.title')}</h1>

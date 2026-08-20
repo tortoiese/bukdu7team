@@ -47,14 +47,14 @@ export default function PersonaConsole() {
 
   if (!personas) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-bone-050">
+      <div className="theme-light flex min-h-screen items-center justify-center bg-bone-050">
         <Loading label={t('common.loading')} />
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-bone-050 px-10 py-8">
+    <div className="theme-light min-h-screen bg-bone-050 px-10 py-8">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-6">
         <div className="flex items-center justify-between">
           <h1 className="t-display-m">{t('d2.title')}</h1>

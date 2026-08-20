@@ -18,7 +18,7 @@ export default function Toast({ lines, onDismiss }: ToastProps) {
       className="fixed inset-x-0 z-50 mx-auto w-full px-[20px]"
       style={{ maxWidth: 'var(--mobile-max)', bottom: '58px' }}
     >
-      <div className="t-mrz px-3 py-2" style={{ background: 'var(--ink-700)', color: 'var(--bone-050)' }}>
+      <div className="t-mrz px-3 py-2" style={{ background: 'var(--ink-900)', color: 'var(--bone-050)' }}>
         <div>{lines[0]}</div>
         {lines[1] && <div>{lines[1]}</div>}
       </div>

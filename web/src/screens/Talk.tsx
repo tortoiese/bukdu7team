@@ -99,8 +99,8 @@ export default function Talk() {
             m.role === 'CHARACTER' ? (
               <CharacterBubble key={i} name={m.character ? brand.characters[m.character].name : ''} message={m.text} />
             ) : (
-              <div key={i} className="ml-auto max-w-[80%] px-3 py-2" style={{ background: 'var(--ink-900)' }}>
-                <p className="t-body" style={{ color: 'var(--bone-050)' }}>
+              <div key={i} className="ml-auto max-w-[80%] px-3 py-2" style={{ background: 'var(--cognac)' }}>
+                <p className="t-body" style={{ color: 'var(--ink-900)' }}>
                   {m.text}
                 </p>
               </div>

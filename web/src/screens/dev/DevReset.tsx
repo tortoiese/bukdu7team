@@ -74,7 +74,7 @@ export default function DevReset() {
   }
 
   return (
-    <div className="min-h-screen bg-bone-050 px-8 py-8">
+    <div className="theme-light min-h-screen bg-bone-050 px-8 py-8">
       <div className="mx-auto flex max-w-[600px] flex-col gap-6">
         <Link to="/" className="t-label underline underline-offset-4" style={{ color: 'var(--graphite)' }}>
           메뉴로
