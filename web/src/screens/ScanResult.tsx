@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useSearchParams, Link } from 'react-router-dom'
 import MobileFrame from '../components/MobileFrame'
 import PassportCover from '../components/PassportCover'
+import ProductSilhouette from '../components/ProductSilhouette'
 import CharacterBubble from '../components/CharacterBubble'
 import { FieldGrid } from '../components/Field'
 import HairlineSection from '../components/HairlineSection'
@@ -190,6 +191,9 @@ export default function ScanResult() {
 
         {/* 제품 정보 카드. 다크 앱 크롬 위 밝은 내지 카드로 띄운다(피그마 P1 참조). */}
         <div className="theme-light flex flex-col gap-4 border p-4" style={{ background: 'var(--bone-050)', borderColor: 'var(--hairline)' }}>
+          <div className="flex justify-center">
+            <ProductSilhouette label={product.displayName} />
+          </div>
           <div>
             <p className="t-label" style={{ color: 'var(--graphite)' }}>
               {product.line}
