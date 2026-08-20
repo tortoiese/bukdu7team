@@ -1,32 +1,39 @@
-# React + TypeScript + Vite
+# ENTRY 프론트엔드
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+ENTRY 고객용 모바일 웹입니다. React와 TypeScript로 구현하며, 기준 화면 크기는 402×874입니다.
 
-Currently, two official plugins are available:
+## 구현된 화면
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `/` — API 연결 상태
+- `/s/:productId` — 제품 스캔 결과
+- `/talk/:scanId` — 구매 고민 대화
+- `/dev/kitchen-sink` — 디자인 시스템 컴포넌트 확인
 
-## React Compiler
+## 실행
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+`web/.env.example`을 참고해 API 주소를 설정합니다.
+
+```env
+VITE_API_BASE=http://localhost:8080/api/v1
+```
+
+## 검사
+
+```bash
+npm run lint
+npm run build
+```
+
+## 개발 규칙
+
+- 화면 컴포넌트에서 `fetch`를 직접 호출하지 않고 `src/features`의 API 함수를 사용합니다.
+- 공통 API 타입은 `src/types/api.ts`에서 관리합니다.
+- 세션 ID는 `localStorage["entry.sid"]`에 저장하며 공통 API 클라이언트가 요청·응답 헤더를 동기화합니다.
+- 색상·폰트·간격은 `src/styles/tokens.css`의 디자인 토큰을 사용합니다.
+- 사용자 문구는 `src/i18n/ko.json`과 `src/i18n/en.json`에서 관리합니다.
+- 새 화면을 추가하면 `src/app/router.tsx`와 루트의 `CLAUDE.md`를 함께 갱신합니다.
