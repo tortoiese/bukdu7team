@@ -207,7 +207,17 @@ MRZ 문자열은 **서버가 생성**해 내려준다. 프론트가 조립하지
 ```
 
 ### `POST /recap/link` (계정 연결 — 해커톤에서는 이메일 형식 검증만, 저장은 해시 처리)
-Request `{ "channel": "EMAIL", "value": "…" , "consent": true }` → `data { "linked": true }`
+Request `{ "channel": "EMAIL", "value": "…" , "consent": true }` → `data { "linked": true, "emailSent": true }`
+
+`value`(원문 이메일/전화번호)는 DB에 저장하지 않는다 — SHA-256 해시만 남는다(CLAUDE.md R8).
+`channel`이 `EMAIL`이고 `consent`가 true면, 그 요청 안에서만 잠깐 쓴 원문 이메일로 저장 링크
+(`{ENTRY_WEB_ORIGIN}/resume/{sessionId}`)를 1회 발송한다 — 발송 실패해도 `linked`는 그대로 true,
+`emailSent`만 false. `entry.mail.mock=true`(기본값)면 실제로 보내지 않고 서버 로그에만 남긴다.
+`channel`이 `PHONE`이면 `emailSent`는 항상 false.
+
+### `GET /resume/:sessionId` (프론트 전용 라우트, API 아님)
+이메일로 받은 링크. `localStorage["entry.sid"]`를 그 sessionId로 설정하고 `/passport`로 이동한다 —
+세션 ID를 아는 사람은 누구나 그 세션에 접근할 수 있다는 기존 신뢰 모델을 그대로 확장한 것이다.
 
 ---
 

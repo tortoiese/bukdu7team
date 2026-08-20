@@ -10,6 +10,7 @@ import Transfer from '../screens/Transfer'
 import Archive from '../screens/Archive'
 import Talk from '../screens/Talk'
 import Register from '../screens/Register'
+import Resume from '../screens/Resume'
 import Advisor from '../screens/Advisor'
 import Admin from '../screens/Admin'
 import PersonaConsole from '../screens/PersonaConsole'
@@ -33,6 +34,7 @@ export const router = createBrowserRouter([
       { path: '/archive', element: <Archive /> },
       { path: '/talk/:scanId', element: <Talk /> },
       { path: '/register', element: <Register /> },
+      { path: '/resume/:sessionId', element: <Resume /> },
       { path: '/advisor/:grantToken', element: <Advisor /> },
       { path: '/entryadmin', element: <AdminLogin /> },
       { path: '/admin', element: <AdminAuthGuard><Admin /></AdminAuthGuard> },

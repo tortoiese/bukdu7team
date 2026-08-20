@@ -24,6 +24,7 @@ export default function Recap() {
   const [value, setValue] = useState('')
   const [consent, setConsent] = useState(false)
   const [linked, setLinked] = useState(false)
+  const [emailSent, setEmailSent] = useState(false)
   const [linkError, setLinkError] = useState(false)
   const [skipped, setSkipped] = useState(false)
 
@@ -42,8 +43,9 @@ export default function Recap() {
   async function handleLink() {
     setLinkError(false)
     try {
-      await linkAccount(channel, value, consent)
+      const res = await linkAccount(channel, value, consent)
       setLinked(true)
+      setEmailSent(res.emailSent)
     } catch {
       setLinkError(true)
     }
@@ -116,7 +118,16 @@ export default function Recap() {
             {t('p3.accountLinkNote')}
           </p>
 
-          {linked && <p className="t-body">{t('p3.linked')}</p>}
+          {linked && (
+            <div className="flex flex-col gap-1">
+              <p className="t-body">{t('p3.linked')}</p>
+              {emailSent && (
+                <p className="t-body-s" style={{ color: 'var(--graphite)' }}>
+                  {t('p3.linkEmailSent')}
+                </p>
+              )}
+            </div>
+          )}
 
           {showLinkForm && (
             <div className="flex flex-col gap-4">

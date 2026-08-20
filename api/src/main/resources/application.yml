@@ -25,6 +25,9 @@ entry:
   admin:
     password: ${ENTRY_ADMIN_PASSWORD:entryadmin}
     token-ttl-hours: ${ENTRY_ADMIN_TOKEN_TTL_HOURS:12}
+  mail:
+    mock: ${ENTRY_MAIL_MOCK:true}
+    from-address: ${ENTRY_MAIL_FROM:ENTRY <onboarding@resend.dev>}
   brand:
     popup-id: ${ENTRY_BRAND_POPUP_ID:MCM-SEONGSU-2026}
     issued-place: ${ENTRY_BRAND_ISSUED_PLACE:SEOUL / SEONGSU}

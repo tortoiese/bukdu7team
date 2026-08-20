@@ -33,8 +33,8 @@ public class RecapController {
 
     @PostMapping("/link")
     public ApiResponse<LinkAccountResponse> link(@Valid @RequestBody LinkAccountRequest request) {
-        boolean linked = recapService.link(sessionId(), request);
-        return ApiResponse.of(new LinkAccountResponse(linked), ApiMeta.basic());
+        LinkAccountResponse response = recapService.link(sessionId(), request);
+        return ApiResponse.of(response, ApiMeta.basic());
     }
 
     private UUID sessionId() {
