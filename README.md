@@ -18,3 +18,5 @@ npm run dev
 - [`docs/DESIGN_SYSTEM.md`](./docs/DESIGN_SYSTEM.md) — 시각 규칙
 - [`docs/API_CONTRACT.md`](./docs/API_CONTRACT.md) — 프론트/백 API 계약
 - [`BUILD_STEPS.md`](./BUILD_STEPS.md) — 구축·배포 단계
+
+## TEAM
