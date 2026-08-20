@@ -898,5 +898,185 @@
     "status": "TRANSFERABLE",
     "transferDays": 5,
     "onlineUrl": null
+  },
+  {
+    "productId": "SKY-STREAM-W260",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "IN_STOCK",
+    "transferDays": null,
+    "onlineUrl": null
+  },
+  {
+    "productId": "SKY-STREAM-B260",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "TRANSFERABLE",
+    "transferDays": 5,
+    "onlineUrl": null
+  },
+  {
+    "productId": "SKY-STREAM-W300",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "ONLINE_ONLY",
+    "transferDays": null,
+    "onlineUrl": null
+  },
+  {
+    "productId": "SKY-STREAM-B300",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "IN_STOCK",
+    "transferDays": null,
+    "onlineUrl": null
+  },
+  {
+    "productId": "HHK-TOTE-M",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "TRANSFERABLE",
+    "transferDays": 5,
+    "onlineUrl": null
+  },
+  {
+    "productId": "HHK-TOTE-L",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "ONLINE_ONLY",
+    "transferDays": null,
+    "onlineUrl": null
+  },
+  {
+    "productId": "HHK-CROSS-S",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "IN_STOCK",
+    "transferDays": null,
+    "onlineUrl": null
+  },
+  {
+    "productId": "HHK-CROSS-M",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "TRANSFERABLE",
+    "transferDays": 5,
+    "onlineUrl": null
+  },
+  {
+    "productId": "DENIM-01",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "ONLINE_ONLY",
+    "transferDays": null,
+    "onlineUrl": null
+  },
+  {
+    "productId": "DENIM-02",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "IN_STOCK",
+    "transferDays": null,
+    "onlineUrl": null
+  },
+  {
+    "productId": "DENIM-03",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "TRANSFERABLE",
+    "transferDays": 5,
+    "onlineUrl": null
+  },
+  {
+    "productId": "PM-TOTE",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "ONLINE_ONLY",
+    "transferDays": null,
+    "onlineUrl": null
+  },
+  {
+    "productId": "PM-POUCH-01",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "IN_STOCK",
+    "transferDays": null,
+    "onlineUrl": null
+  },
+  {
+    "productId": "PM-CHARM-01",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "TRANSFERABLE",
+    "transferDays": 5,
+    "onlineUrl": null
+  },
+  {
+    "productId": "PM-CHARM-02",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "ONLINE_ONLY",
+    "transferDays": null,
+    "onlineUrl": null
+  },
+  {
+    "productId": "LIFESTYLE-MUG-01",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "IN_STOCK",
+    "transferDays": null,
+    "onlineUrl": null
+  },
+  {
+    "productId": "LIFESTYLE-SCARF-01",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "TRANSFERABLE",
+    "transferDays": 5,
+    "onlineUrl": null
+  },
+  {
+    "productId": "LIFESTYLE-CARDCASE-01",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "ONLINE_ONLY",
+    "transferDays": null,
+    "onlineUrl": null
+  },
+  {
+    "productId": "LIFESTYLE-KEYRING-01",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "IN_STOCK",
+    "transferDays": null,
+    "onlineUrl": null
+  },
+  {
+    "productId": "LIFESTYLE-BELT-01",
+    "storeId": "SG-ION",
+    "storeName": "아이온 오차드",
+    "market": "SG",
+    "status": "TRANSFERABLE",
+    "transferDays": 5,
+    "onlineUrl": null
   }
 ]

@@ -1,6 +1,6 @@
 // docs/API_CONTRACT.md 와 1:1로 맞춘 타입. 서버 enum과 문자열 리터럴 유니온을 일치시킨다.
 
-export type Market = 'KR' | 'HK' | 'JP' | 'US'
+export type Market = 'KR' | 'HK' | 'JP' | 'US' | 'SG'
 export type Locale = 'ko' | 'en' | 'zh-Hant' | 'ja'
 
 export interface ApiMeta {

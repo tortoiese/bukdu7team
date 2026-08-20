@@ -19,6 +19,7 @@ public class MarketLocaleResolver {
         if (tz.contains("Hong_Kong")) return new Inference(Market.HK, AppLocale.ZH_HANT);
         if (tz.contains("Tokyo")) return new Inference(Market.JP, AppLocale.JA);
         if (tz.contains("Seoul")) return new Inference(Market.KR, AppLocale.KO);
+        if (tz.contains("Singapore")) return new Inference(Market.SG, AppLocale.EN);
         if (isUsTimezone(tz)) return new Inference(Market.US, AppLocale.EN);
 
         String lang = acceptLanguage == null ? "" : acceptLanguage.toLowerCase();

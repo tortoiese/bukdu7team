@@ -11,6 +11,7 @@ public final class CurrencyByMarket {
             case HK -> "HKD";
             case JP -> "JPY";
             case US -> "USD";
+            case SG -> "SGD";
         };
     }
 }
