@@ -32,7 +32,6 @@
 
   "p2.emptyTitle": "No passport yet.",
   "p2.emptyBody": "Scan the entry tag to get one issued.",
-  "p2.devIssue": "Issue (dev)",
   "p2.issuedPlace": "Issued at",
   "p2.issuedAt": "Issued on",
   "p2.visitedZones": "Zones visited",
@@ -66,6 +65,7 @@
   "p3.skip": "Skip",
   "p3.continueArchive": "Continue to saved items",
   "p3.linked": "Linked",
+  "p3.linkEmailSent": "We emailed you a link to your saved items.",
   "p3.emailPlaceholder": "example@domain.com",
   "p3.phonePlaceholder": "+82 10-0000-0000",
   "p3.linkError": "Could not link. You can try again later.",

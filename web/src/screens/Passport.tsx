@@ -8,14 +8,12 @@ import HairlineSection from '../components/HairlineSection'
 import Stamp from '../components/Stamp'
 import ProgressGauge from '../components/ProgressGauge'
 import Toast from '../components/Toast'
-import Button from '../components/Button'
 import Loading from '../components/Loading'
 import { useT } from '../i18n'
 import { useSessionStore } from '../features/session/store'
 import { useMrzStore } from '../features/mrz/store'
-import { getPassport, isNotFound, issuePassport } from '../features/passport/api'
+import { getPassport, isNotFound } from '../features/passport/api'
 import { getArchive } from '../features/archive/api'
-import brand from '../brand/mcm.json'
 import type { ArchiveItem, PassportData, PassportZone } from '../types/api'
 
 const COVER_SEEN_KEY = 'entry.passportCoverSeen'
@@ -49,7 +47,6 @@ export default function Passport() {
 
   const [passport, setPassport] = useState<PassportData | null>(null)
   const [notFound, setNotFound] = useState(false)
-  const [issuing, setIssuing] = useState(false)
   const [previewItems, setPreviewItems] = useState<ArchiveItem[]>([])
   const [toast, setToast] = useState<[string, string?] | null>(null)
   // 표지 펼치기 연출은 이번 세션에서 처음 볼 때만 보여준다. 그렇지 않으면 구역 검인/저장 직후
@@ -100,17 +97,6 @@ export default function Passport() {
     setMrz(passport.mrz, t('p2.mrzAccessible', { passportNo: passport.passportNo, tier: passport.accessTier, savedCount: passport.savedCount }))
   }, [passport, setMrz, t])
 
-  async function handleDevIssue() {
-    setIssuing(true)
-    try {
-      const data = await issuePassport(brand.popupId, brand.originStore.storeId)
-      setPassport(data)
-      setNotFound(false)
-    } finally {
-      setIssuing(false)
-    }
-  }
-
   if (!sessionReady || (!passport && !notFound)) {
     return (
       <MobileFrame>
@@ -129,9 +115,6 @@ export default function Passport() {
           <p className="t-body-s" style={{ color: 'var(--graphite)' }}>
             {t('p2.emptyBody')}
           </p>
-          <Button variant="secondary" onClick={() => void handleDevIssue()} disabled={issuing}>
-            {t('p2.devIssue')}
-          </Button>
         </div>
       </MobileFrame>
     )

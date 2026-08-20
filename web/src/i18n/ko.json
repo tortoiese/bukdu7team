@@ -32,7 +32,6 @@
 
   "p2.emptyTitle": "아직 패스포트가 없습니다.",
   "p2.emptyBody": "입구 태그를 스캔하면 발급됩니다.",
-  "p2.devIssue": "개발용 발급",
   "p2.issuedPlace": "발급 장소",
   "p2.issuedAt": "발급일",
   "p2.visitedZones": "방문 구역",
@@ -66,6 +65,7 @@
   "p3.skip": "건너뛰기",
   "p3.continueArchive": "저장 목록 이어보기",
   "p3.linked": "연결했습니다",
+  "p3.linkEmailSent": "저장 링크를 이메일로 보냈습니다.",
   "p3.emailPlaceholder": "example@domain.com",
   "p3.phonePlaceholder": "+82 10-0000-0000",
   "p3.linkError": "연결하지 못했습니다. 나중에 다시 시도할 수 있습니다.",

@@ -49,12 +49,22 @@ public class PassportService {
 
     @Transactional
     public PassportData issue(UUID sessionId, String popupId) {
-        Passport passport = passportRepository.findBySessionId(sessionId).orElseGet(() -> {
+        Passport passport = issueOrGet(sessionId, popupId);
+        return toData(passport);
+    }
+
+    /**
+     * 실제 게스트 흐름에서는 "발급" 버튼이 따로 없다 — 제품 태그든 구역 태그든
+     * 첫 스캔이 곧 입구 태그를 댄 것과 같은 의미라 그 순간 조용히 발급된다(멱등).
+     * ScanService(P1)·stamp(P4 구역 검인) 양쪽에서 호출한다.
+     */
+    @Transactional
+    public Passport issueOrGet(UUID sessionId, String popupId) {
+        return passportRepository.findBySessionId(sessionId).orElseGet(() -> {
             String passportNo = String.format("ENT-KR-%07d", passportRepository.count() + 1);
             Passport created = new Passport(sessionId, passportNo, popupId, brandProperties.getIssuedPlace(), Instant.now());
             return passportRepository.save(created);
         });
-        return toData(passport);
     }
 
     public PassportData get(UUID sessionId) {
@@ -65,8 +75,7 @@ public class PassportService {
 
     @Transactional
     public StampResponse stamp(UUID sessionId, String zoneId) {
-        Passport passport = passportRepository.findBySessionId(sessionId)
-                .orElseThrow(() -> EntryException.notFound("PASSPORT_NOT_FOUND", "패스포트가 아직 발급되지 않았습니다."));
+        Passport passport = issueOrGet(sessionId, brandProperties.getPopupId());
 
         if (stampRepository.findByPassportIdAndZoneId(passport.getId(), zoneId).isPresent()) {
             throw EntryException.conflict("ZONE_ALREADY_STAMPED", "이미 검인된 구역입니다.");

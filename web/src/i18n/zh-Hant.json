@@ -32,7 +32,6 @@
 
   "p2.emptyTitle": "尚未發行護照。",
   "p2.emptyBody": "掃描入口標籤即可發行。",
-  "p2.devIssue": "開發用發行",
   "p2.issuedPlace": "發行地點",
   "p2.issuedAt": "發行日期",
   "p2.visitedZones": "已訪問區域",
@@ -66,6 +65,7 @@
   "p3.skip": "略過",
   "p3.continueArchive": "繼續查看收藏清單",
   "p3.linked": "已連結",
+  "p3.linkEmailSent": "已將儲存連結寄至您的信箱。",
   "p3.emailPlaceholder": "example@domain.com",
   "p3.phonePlaceholder": "+852 0000 0000",
   "p3.linkError": "連結失敗。您可以稍後再試。",

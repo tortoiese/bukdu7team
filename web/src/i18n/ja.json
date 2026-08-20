@@ -32,7 +32,6 @@
 
   "p2.emptyTitle": "まだパスポートがありません。",
   "p2.emptyBody": "入口タグをスキャンすると発行されます。",
-  "p2.devIssue": "開発用発行",
   "p2.issuedPlace": "発行場所",
   "p2.issuedAt": "発行日",
   "p2.visitedZones": "訪問エリア",
@@ -66,6 +65,7 @@
   "p3.skip": "スキップ",
   "p3.continueArchive": "保存リストを見る",
   "p3.linked": "連携しました",
+  "p3.linkEmailSent": "保存リンクをメールで送信しました。",
   "p3.emailPlaceholder": "example@domain.com",
   "p3.phonePlaceholder": "+81 90-0000-0000",
   "p3.linkError": "連携できませんでした。後でもう一度お試しください。",
