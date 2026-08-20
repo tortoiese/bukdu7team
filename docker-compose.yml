@@ -38,9 +38,24 @@ services:
         VITE_API_BASE: /api/v1
     ports:
       - '80:80'
+      - '443:443'
+    volumes:
+      - certbot_conf:/etc/letsencrypt:ro
+      - certbot_www:/var/www/certbot:ro
     depends_on:
       - api
     restart: unless-stopped
 
+  # 인증서 발급/갱신 전용. 평소엔 대기만 하다가 6시간마다 갱신을 시도한다(안전한 no-op).
+  # 최초 발급은 BUILD_STEPS.md 8-6절대로 `docker compose run --rm certbot certonly ...`를 한 번 수동 실행한다.
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - certbot_conf:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
+    entrypoint: /bin/sh -c "trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot --quiet; sleep 6h & wait $${!}; done"
+
 volumes:
   postgres_data:
+  certbot_conf:
+  certbot_www:

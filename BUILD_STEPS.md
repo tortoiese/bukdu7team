@@ -171,6 +171,64 @@ docker compose up --build
 - 가비아 클라우드는 8/28(금) 23:59에 서버가 일괄 삭제된다. Postgres 데이터는 `postgres_data` 볼륨에만 있으므로, 연장하지 않으면 그 전에 백업하거나 데모용 더미 데이터임을 감안한다.
 - `ANTHROPIC_API_KEY`를 `.env`에 넣더라도 절대 git에 커밋하지 않는다 — `.env`는 `.gitignore`에 있다.
 
+### 8-6. HTTPS 전환 (Let's Encrypt, sslip.io 도메인)
+
+`entrypassport.1.201.116.98.sslip.io`는 실제 그 IP를 가리키는 정식 도메인이라 무료 인증서를
+그대로 받을 수 있다. **가비아 클라우드 콘솔에서 443(HTTPS) 인바운드를 먼저 열어야 한다** —
+80을 열 때와 같은 보안 그룹/방화벽 화면에서 TCP 443을 추가한다. 코드는 이미 1단계까지 준비돼 있다.
+
+**1단계 (완료, `nginx.conf`에 이미 반영됨)** — 인증서 없이도 정상 기동하는 상태.
+80번 포트 서버 블록에 `/.well-known/acme-challenge/` 경로를 추가해뒀다. `docker-compose.yml`에
+`certbot` 서비스와 `certbot_conf`/`certbot_www` 볼륨도 이미 있다.
+
+**2단계 — 443 오픈 확인 후 진행**
+```bash
+# VM에서, docker-compose.yml이 있는 디렉토리에서
+sudo docker compose up -d --build          # certbot 서비스 포함해서 기동
+sudo docker compose run --rm certbot certonly \
+  --webroot -w /var/www/certbot \
+  -d entrypassport.1.201.116.98.sslip.io \
+  --email <팀 이메일> --agree-tos --no-eff-email
+```
+`/etc/letsencrypt/live/entrypassport.1.201.116.98.sslip.io/`에 인증서가 생기면 `nginx.conf`를
+아래처럼 바꾸고(80은 `/.well-known/`만 남기고 나머지는 443으로 리다이렉트, 443 서버 블록 신설) 재배포한다.
+인증서가 없는 상태에서 `ssl_certificate`를 참조하면 nginx가 아예 기동하지 않으니 **반드시 발급 이후에** 바꾼다.
+
+```nginx
+server {
+    listen 80;
+    server_name entrypassport.1.201.116.98.sslip.io;
+    location /.well-known/acme-challenge/ { root /var/www/certbot; }
+    location / { return 301 https://$host$request_uri; }
+}
+
+server {
+    listen 443 ssl;
+    server_name entrypassport.1.201.116.98.sslip.io;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    ssl_certificate     /etc/letsencrypt/live/entrypassport.1.201.116.98.sslip.io/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/entrypassport.1.201.116.98.sslip.io/privkey.pem;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /api/ {
+        proxy_pass http://api:8080/api/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+동시에 `.env`의 `ENTRY_CORS_ORIGINS`/`ENTRY_WEB_ORIGIN`을 `https://entrypassport.1.201.116.98.sslip.io`로
+바꾸고 `docker compose up -d --build`로 재배포한다. `certbot` 서비스가 6시간마다 자동 갱신을 시도하므로
+90일 만료 전에 별도 cron 없이 갱신된다.
+
 ---
 
 ## Phase 9 — 데모 리허설
