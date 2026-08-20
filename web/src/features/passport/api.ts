@@ -9,8 +9,8 @@ export function issuePassport(popupId: string, issuedAtStore: string) {
   return apiRequest<PassportData>('/passport', { method: 'POST', body: { popupId, issuedAtStore } })
 }
 
-export function stampZone(zoneId: string) {
-  return apiRequest<StampResponse>('/passport/stamps', { method: 'POST', body: { zoneId } })
+export function stampZone(zoneId: string, storeId?: string) {
+  return apiRequest<StampResponse>('/passport/stamps', { method: 'POST', body: { zoneId, storeId } })
 }
 
 export function isNotFound(error: unknown) {

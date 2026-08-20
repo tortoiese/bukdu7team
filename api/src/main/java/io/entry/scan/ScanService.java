@@ -2,7 +2,6 @@ package io.entry.scan;
 
 import io.entry.catalog.Product;
 import io.entry.catalog.ProductCatalog;
-import io.entry.common.BrandProperties;
 import io.entry.intent.AiIntentService;
 import io.entry.intent.IntentSignal;
 import io.entry.passport.PassportService;
@@ -23,17 +22,15 @@ public class ScanService {
     private final AiIntentService intentAnalyzer;
     private final AiGreetingService greetingService;
     private final PassportService passportService;
-    private final BrandProperties brandProperties;
 
     public ScanService(ScanEventRepository scanEventRepository, ProductCatalog productCatalog,
                         AiIntentService intentAnalyzer, AiGreetingService greetingService,
-                        PassportService passportService, BrandProperties brandProperties) {
+                        PassportService passportService) {
         this.scanEventRepository = scanEventRepository;
         this.productCatalog = productCatalog;
         this.intentAnalyzer = intentAnalyzer;
         this.greetingService = greetingService;
         this.passportService = passportService;
-        this.brandProperties = brandProperties;
     }
 
     @Transactional
@@ -41,7 +38,8 @@ public class ScanService {
         Product product = productCatalog.get(request.productId()); // 존재하지 않으면 PRODUCT_NOT_FOUND
 
         // 매대 태그 스캔이 곧 입구 태그를 댄 것과 같다 — 별도 "발급" 버튼 없이 첫 스캔에서 조용히 발급한다(멱등).
-        passportService.issueOrGet(sessionId, brandProperties.getPopupId());
+        // 어느 매장(성수/더현대/합정/문래) QR로 스캔했는지에 따라 발급 정보가 갈린다.
+        passportService.issueOrGet(sessionId, request.storeId());
 
         ScanEvent event = new ScanEvent(sessionId, request.productId(), request.storeId(), request.zoneId(), Instant.now());
         scanEventRepository.save(event);

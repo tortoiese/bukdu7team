@@ -2,6 +2,12 @@
   "popupId": "MCM-SEONGSU-2026",
   "popupName": "SEONGSU POP-UP",
   "originStore": { "storeId": "KR-SEONGSU", "storeName": "성수 팝업", "market": "KR" },
+  "stores": [
+    { "storeId": "KR-SEONGSU", "storeName": "성수 팝업", "city": "서울 성수" },
+    { "storeId": "KR-HYUNDAI", "storeName": "더현대 서울 팝업", "city": "서울 여의도" },
+    { "storeId": "KR-HAPJEONG", "storeName": "합정 팝업", "city": "서울 합정" },
+    { "storeId": "KR-MULLAE", "storeName": "문래 팝업", "city": "서울 문래" }
+  ],
   "characters": {
     "HARU": { "name": "하루", "avatar": "/assets/characters/haru.svg" },
     "HENRY": { "name": "헨리", "avatar": "/assets/characters/henry.svg" },
@@ -12,7 +18,9 @@
     "HHK": "HHK",
     "DENIM": "Denim",
     "M_PUP": "M PUP",
-    "LIFESTYLE": "Lifestyle"
+    "LIFESTYLE": "Lifestyle",
+    "HIMMEL": "Himmel",
+    "VISETOS": "Visetos Original"
   },
   "zones": {
     "ZONE01": "HERITAGE",

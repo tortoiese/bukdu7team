@@ -1,9 +1,10 @@
 package io.entry.passport;
 
 import io.entry.archive.SavedItemRepository;
+import io.entry.catalog.Store;
+import io.entry.catalog.StoreCatalog;
 import io.entry.catalog.Zone;
 import io.entry.catalog.ZoneCatalog;
-import io.entry.common.BrandProperties;
 import io.entry.common.EntryException;
 import io.entry.common.MrzBuilder;
 import io.entry.intent.IntentService;
@@ -31,38 +32,41 @@ public class PassportService {
     private final PassportStampRepository stampRepository;
     private final SavedItemRepository savedItemRepository;
     private final ZoneCatalog zoneCatalog;
+    private final StoreCatalog storeCatalog;
     private final PassportTier passportTier;
     private final IntentService intentService;
-    private final BrandProperties brandProperties;
 
     public PassportService(PassportRepository passportRepository, PassportStampRepository stampRepository,
-                            SavedItemRepository savedItemRepository, ZoneCatalog zoneCatalog,
-                            PassportTier passportTier, IntentService intentService, BrandProperties brandProperties) {
+                            SavedItemRepository savedItemRepository, ZoneCatalog zoneCatalog, StoreCatalog storeCatalog,
+                            PassportTier passportTier, IntentService intentService) {
         this.passportRepository = passportRepository;
         this.stampRepository = stampRepository;
         this.savedItemRepository = savedItemRepository;
         this.zoneCatalog = zoneCatalog;
+        this.storeCatalog = storeCatalog;
         this.passportTier = passportTier;
         this.intentService = intentService;
-        this.brandProperties = brandProperties;
     }
 
     @Transactional
-    public PassportData issue(UUID sessionId, String popupId) {
-        Passport passport = issueOrGet(sessionId, popupId);
+    public PassportData issue(UUID sessionId, String storeId) {
+        Passport passport = issueOrGet(sessionId, storeId);
         return toData(passport);
     }
 
     /**
      * 실제 게스트 흐름에서는 "발급" 버튼이 따로 없다 — 제품 태그든 구역 태그든
      * 첫 스캔이 곧 입구 태그를 댄 것과 같은 의미라 그 순간 조용히 발급된다(멱등).
+     * 어느 매장(성수/더현대/합정/문래) QR로 들어왔는지에 따라 발급 정보가 갈린다 — 이미 발급된
+     * 세션이면 storeId를 무시하고 기존 패스포트를 그대로 돌려준다(최초 매장이 우선).
      * ScanService(P1)·stamp(P4 구역 검인) 양쪽에서 호출한다.
      */
     @Transactional
-    public Passport issueOrGet(UUID sessionId, String popupId) {
+    public Passport issueOrGet(UUID sessionId, String storeId) {
         return passportRepository.findBySessionId(sessionId).orElseGet(() -> {
+            Store store = storeCatalog.getOrDefault(storeId);
             String passportNo = String.format("ENT-KR-%07d", passportRepository.count() + 1);
-            Passport created = new Passport(sessionId, passportNo, popupId, brandProperties.getIssuedPlace(), Instant.now());
+            Passport created = new Passport(sessionId, passportNo, store.popupId(), store.issuedPlace(), Instant.now());
             return passportRepository.save(created);
         });
     }
@@ -74,8 +78,8 @@ public class PassportService {
     }
 
     @Transactional
-    public StampResponse stamp(UUID sessionId, String zoneId) {
-        Passport passport = issueOrGet(sessionId, brandProperties.getPopupId());
+    public StampResponse stamp(UUID sessionId, String zoneId, String storeId) {
+        Passport passport = issueOrGet(sessionId, storeId);
 
         if (stampRepository.findByPassportIdAndZoneId(passport.getId(), zoneId).isPresent()) {
             throw EntryException.conflict("ZONE_ALREADY_STAMPED", "이미 검인된 구역입니다.");

@@ -31,6 +31,7 @@ const MARKET_CYCLE: { market: Market; locale: Locale }[] = [
   { market: 'KR', locale: 'ko' },
   { market: 'HK', locale: 'zh-Hant' },
   { market: 'JP', locale: 'ja' },
+  { market: 'SG', locale: 'en' },
   { market: 'US', locale: 'en' },
 ]
 
@@ -45,6 +46,9 @@ export default function ScanResult() {
   const { productId } = useParams<{ productId: string }>()
   const [searchParams] = useSearchParams()
   const zoneId = searchParams.get('zone') ?? DEFAULT_ZONE
+  // 매장별 QR 시트(/dev/qr)가 ?store=로 매장을 실어 보낸다. 없으면 성수 팝업으로 취급한다
+  // (기존에 뿌려둔 QR과의 호환 + 게스트 메뉴에서 직접 들어온 경우의 기본값).
+  const storeId = searchParams.get('store') ?? brand.originStore.storeId
 
   const t = useT()
   const market = useSessionStore((s) => s.market)
@@ -75,7 +79,7 @@ export default function ScanResult() {
         cancelled = true
       }
     }
-    postScan({ storeId: brand.originStore.storeId, zoneId, productId, scannedAt: new Date().toISOString() })
+    postScan({ storeId, zoneId, productId, scannedAt: new Date().toISOString() })
       .then((res) => {
         if (!cancelled) setScan(res)
       })
@@ -86,7 +90,7 @@ export default function ScanResult() {
       cancelled = true
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ready, productId, isDemo])
+  }, [ready, productId, isDemo, storeId])
 
   // 제품/재고 조회: 시장이 바뀌면 재고 표기를 다시 가져온다.
   useEffect(() => {

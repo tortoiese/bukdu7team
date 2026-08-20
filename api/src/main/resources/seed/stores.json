@@ -1,0 +1,6 @@
+[
+  { "storeId": "KR-SEONGSU", "storeName": "성수 팝업", "issuedPlace": "SEOUL / SEONGSU", "popupId": "MCM-SEONGSU-2026" },
+  { "storeId": "KR-HYUNDAI", "storeName": "더현대 서울 팝업", "issuedPlace": "SEOUL / YEOUIDO", "popupId": "MCM-HYUNDAI-2026" },
+  { "storeId": "KR-HAPJEONG", "storeName": "합정 팝업", "issuedPlace": "SEOUL / HAPJEONG", "popupId": "MCM-HAPJEONG-2026" },
+  { "storeId": "KR-MULLAE", "storeName": "문래 팝업", "issuedPlace": "SEOUL / MULLAE", "popupId": "MCM-MULLAE-2026" }
+]

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import MobileFrame from '../components/MobileFrame'
 import Loading from '../components/Loading'
 import { useT } from '../i18n'
@@ -10,6 +10,8 @@ import { ApiError } from '../features/client'
 // 구역 QR 진입점(/z/:zoneId). 검인 후 /passport로 이동해 스탬프 모션을 재생한다.
 export default function ZoneStamp() {
   const { zoneId } = useParams<{ zoneId: string }>()
+  const [searchParams] = useSearchParams()
+  const storeId = searchParams.get('store') ?? undefined
   const navigate = useNavigate()
   const sessionReady = useSessionStore((s) => s.ready)
   const t = useT()
@@ -17,7 +19,7 @@ export default function ZoneStamp() {
 
   useEffect(() => {
     if (!sessionReady || !zoneId) return
-    stampZone(zoneId)
+    stampZone(zoneId, storeId)
       .then((res) => {
         navigate('/passport', { replace: true, state: { tierUnlocked: res.tierUnlocked } })
       })

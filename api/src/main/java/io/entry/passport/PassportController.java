@@ -27,7 +27,7 @@ public class PassportController {
 
     @PostMapping
     public ApiResponse<PassportData> issue(@Valid @RequestBody PassportRequestDto request) {
-        PassportData data = passportService.issue(sessionId(), request.popupId());
+        PassportData data = passportService.issue(sessionId(), request.issuedAtStore());
         return ApiResponse.of(data, ApiMeta.basic());
     }
 
@@ -38,7 +38,7 @@ public class PassportController {
 
     @PostMapping("/stamps")
     public ApiResponse<StampResponse> stamp(@Valid @RequestBody StampZoneRequest request) {
-        StampResponse response = passportService.stamp(sessionId(), request.zoneId());
+        StampResponse response = passportService.stamp(sessionId(), request.zoneId(), request.storeId());
         return ApiResponse.of(response, ApiMeta.basic());
     }
 
