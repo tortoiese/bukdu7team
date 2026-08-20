@@ -161,5 +161,12 @@
   "adminAuth.passwordLabel": "密碼",
   "adminAuth.submit": "進入",
   "adminAuth.invalid": "密碼不正確。",
-  "adminAuth.logout": "登出"
+  "adminAuth.logout": "登出",
+
+  "lookup.title": "以電子郵件返回",
+  "lookup.body": "輸入您在到訪回顧中連結的電子郵件,即可再次查看已儲存的產品與到訪紀錄。",
+  "lookup.submit": "返回",
+  "lookup.notFound": "找不到已連結的紀錄。請確認電子郵件是否正確。",
+  "nav.lookup": "以電子郵件返回",
+  "nav.myEmail": "我的電子郵件"
 }

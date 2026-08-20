@@ -76,6 +76,10 @@ export default function Home() {
         <HairlineSection title="고객 화면 (P1~P8)">
           <NavList items={CUSTOMER_SCREENS} />
         </HairlineSection>
+
+        <Link to="/lookup" className="t-label text-center underline underline-offset-4" style={{ color: 'var(--graphite)' }}>
+          {t('nav.lookup')}
+        </Link>
       </div>
     </MobileFrame>
   )

@@ -82,6 +82,7 @@ entry/
 | P7 | 어드바이저 뷰 | `/advisor/:grantToken` | P2 |
 | P8 | 사전 등록 | `/register` | P1 |
 | — | 저장 링크 재접속 | `/resume/:sessionId` | P1 |
+| — | 이메일로 돌아가기 | `/lookup` | P1 |
 | D1 | 의도 대시보드 | `/admin` (비밀번호 필요) | P1 |
 | D2 | 페르소나봇 콘솔 | `/admin/personas` (비밀번호 필요) | P2 |
 | — | 운영자 로그인 | `/entryadmin` | P1 |

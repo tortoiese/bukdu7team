@@ -36,4 +36,12 @@ public class RecapLink {
         this.consent = consent;
         this.linkedAt = linkedAt;
     }
+
+    public UUID getSessionId() {
+        return sessionId;
+    }
+
+    public Instant getLinkedAt() {
+        return linkedAt;
+    }
 }

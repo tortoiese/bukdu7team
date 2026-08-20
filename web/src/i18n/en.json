@@ -161,5 +161,12 @@
   "adminAuth.passwordLabel": "Password",
   "adminAuth.submit": "Enter",
   "adminAuth.invalid": "That password isn't correct.",
-  "adminAuth.logout": "Log out"
+  "adminAuth.logout": "Log out",
+
+  "lookup.title": "Return with email",
+  "lookup.body": "Enter the email you linked in the visit recap to see your saved items and visit history again.",
+  "lookup.submit": "Return",
+  "lookup.notFound": "We couldn't find a linked record. Please check the email and try again.",
+  "nav.lookup": "Return with email",
+  "nav.myEmail": "My email"
 }

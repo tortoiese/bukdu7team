@@ -161,5 +161,12 @@
   "adminAuth.passwordLabel": "パスワード",
   "adminAuth.submit": "入場",
   "adminAuth.invalid": "パスワードが正しくありません。",
-  "adminAuth.logout": "ログアウト"
+  "adminAuth.logout": "ログアウト",
+
+  "lookup.title": "メールで戻る",
+  "lookup.body": "訪問リキャップで連携したメールアドレスを入力すると、保存した商品と訪問履歴を再確認できます。",
+  "lookup.submit": "戻る",
+  "lookup.notFound": "連携された記録が見つかりません。メールアドレスをご確認ください。",
+  "nav.lookup": "メールで戻る",
+  "nav.myEmail": "マイメール"
 }

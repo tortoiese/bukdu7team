@@ -11,6 +11,7 @@ import Archive from '../screens/Archive'
 import Talk from '../screens/Talk'
 import Register from '../screens/Register'
 import Resume from '../screens/Resume'
+import Lookup from '../screens/Lookup'
 import Advisor from '../screens/Advisor'
 import Admin from '../screens/Admin'
 import PersonaConsole from '../screens/PersonaConsole'
@@ -35,6 +36,7 @@ export const router = createBrowserRouter([
       { path: '/talk/:scanId', element: <Talk /> },
       { path: '/register', element: <Register /> },
       { path: '/resume/:sessionId', element: <Resume /> },
+      { path: '/lookup', element: <Lookup /> },
       { path: '/advisor/:grantToken', element: <Advisor /> },
       { path: '/entryadmin', element: <AdminLogin /> },
       { path: '/admin', element: <AdminAuthGuard><Admin /></AdminAuthGuard> },

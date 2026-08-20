@@ -5,12 +5,14 @@ import io.entry.archive.dto.IntentSummary;
 import io.entry.catalog.Product;
 import io.entry.catalog.ProductCatalog;
 import io.entry.common.BrandProperties;
+import io.entry.common.EntryException;
 import io.entry.intent.IntentService;
 import io.entry.intent.UnresolvedCode;
 import io.entry.mail.MailClient;
 import io.entry.mail.MailUnavailableException;
 import io.entry.recap.dto.LinkAccountRequest;
 import io.entry.recap.dto.LinkAccountResponse;
+import io.entry.recap.dto.LookupResponse;
 import io.entry.recap.dto.RecapData;
 import io.entry.scan.ScanEvent;
 import io.entry.scan.ScanEventRepository;
@@ -119,6 +121,14 @@ public class RecapService {
             emailSent = trySendResumeLink(sessionId, request.value());
         }
         return new LinkAccountResponse(true, emailSent);
+    }
+
+    /** /lookup 전용 — 이메일을 그대로 저장하지 않으므로, 입력값을 해시해 기존 해시와 대조한다. */
+    public LookupResponse lookup(String email) {
+        String hash = sha256(email);
+        return recapLinkRepository.findTopByChannelAndValueHashOrderByLinkedAtDesc("EMAIL", hash)
+                .map(link -> new LookupResponse(link.getSessionId().toString()))
+                .orElseThrow(() -> EntryException.notFound("CONTACT_NOT_FOUND", "연결된 기록을 찾을 수 없습니다."));
     }
 
     private boolean trySendResumeLink(UUID sessionId, String email) {
