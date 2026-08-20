@@ -14,3 +14,7 @@ export function createSession(req: CreateSessionRequest) {
 export function updateMarket(market: Market, locale: Locale) {
   return apiRequest<SessionData>('/sessions/market', { method: 'PATCH', body: { market, locale } })
 }
+
+export function getCurrentSession() {
+  return apiRequest<SessionData>('/sessions/current')
+}

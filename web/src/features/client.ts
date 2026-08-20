@@ -1,4 +1,4 @@
-// 공통 fetch 래퍼. 세션 헤더 주입, meta.sessionRotated 처리, 에러 → ApiError 변환.
+// 공통 fetch 래퍼. 세션 요청/응답 헤더 동기화, 에러 → ApiError 변환.
 // 컴포넌트에서 fetch를 직접 호출하지 않는다. 반드시 이 클라이언트를 통과한다.
 import type { ApiErrorBody, ApiResponse } from '../types/api'
 import { useSessionStore } from './session/store'
@@ -42,6 +42,9 @@ export async function apiRequest<T>(path: string, options: RequestOptions = {}):
     throw new ApiError('NETWORK_ERROR', '네트워크에 연결할 수 없습니다.', 0)
   }
 
+  const resolvedSessionId = res.headers.get('X-Entry-Session')
+  if (resolvedSessionId) useSessionStore.getState().replaceSession(resolvedSessionId)
+
   let json: ApiResponse<T> | ApiErrorBody
   try {
     json = await res.json()
@@ -52,12 +55,6 @@ export async function apiRequest<T>(path: string, options: RequestOptions = {}):
   if (!res.ok || 'error' in json) {
     const err = 'error' in json ? json.error : { code: 'UNKNOWN', message: '알 수 없는 오류' }
     throw new ApiError(err.code, err.message, res.status)
-  }
-
-  if (json.meta?.sessionRotated) {
-    // 세션이 서버에서 재발급됨 — 새 세션을 발급받아 로컬 저장값을 갱신한다.
-    // 사용자가 막히는 화면이 없어야 하므로(CLAUDE.md 5장) await 하지 않고 흘려보낸다.
-    void useSessionStore.getState().reissue()
   }
 
   return json.data

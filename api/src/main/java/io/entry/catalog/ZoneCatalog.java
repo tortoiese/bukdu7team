@@ -1,11 +1,13 @@
 package io.entry.catalog;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.entry.common.EntryException;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -28,6 +30,15 @@ public class ZoneCatalog {
 
     public Zone get(String zoneId) {
         return byId.get(zoneId);
+    }
+
+    public Zone require(String zoneId) {
+        String normalized = zoneId == null ? null : zoneId.trim().toUpperCase(Locale.ROOT);
+        Zone zone = byId.get(normalized);
+        if (zone == null) {
+            throw EntryException.badRequest("INVALID_ZONE", "존 코드를 확인해주세요.");
+        }
+        return zone;
     }
 
     public List<Zone> all() {

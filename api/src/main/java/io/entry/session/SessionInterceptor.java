@@ -27,12 +27,12 @@ public class SessionInterceptor implements HandlerInterceptor {
         String header = request.getHeader(HEADER);
         AnonymousSession session = sessionService.findValid(header);
 
-        if (session != null) {
-            RequestContext.setSessionId(session.getId().toString(), false);
-        } else {
-            AnonymousSession reissued = sessionService.autoIssue();
-            RequestContext.setSessionId(reissued.getId().toString(), true);
-        }
+        boolean rotated = session == null;
+        AnonymousSession resolved = rotated ? sessionService.autoIssue() : session;
+        String sessionId = resolved.getId().toString();
+
+        RequestContext.setSessionId(sessionId, rotated);
+        response.setHeader(HEADER, sessionId);
         return true;
     }
 }

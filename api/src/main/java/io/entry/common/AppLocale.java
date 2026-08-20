@@ -23,6 +23,6 @@ public enum AppLocale {
         for (AppLocale locale : values()) {
             if (locale.value.equalsIgnoreCase(value)) return locale;
         }
-        return KO;
+        throw new IllegalArgumentException("지원하지 않는 locale입니다: " + value);
     }
 }

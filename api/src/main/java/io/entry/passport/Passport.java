@@ -5,12 +5,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 import java.time.Instant;
 import java.util.UUID;
 
 @Entity
-@Table(name = "passport")
+@Table(name = "passport", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "sessionId"),
+        @UniqueConstraint(columnNames = "passportNo")
+})
 public class Passport {
 
     @Id

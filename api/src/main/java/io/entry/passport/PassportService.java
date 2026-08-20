@@ -9,12 +9,14 @@ import io.entry.common.MrzBuilder;
 import io.entry.intent.IntentService;
 import io.entry.passport.dto.PassportData;
 import io.entry.passport.dto.StampResponse;
+import io.entry.session.SessionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
@@ -34,10 +36,12 @@ public class PassportService {
     private final PassportTier passportTier;
     private final IntentService intentService;
     private final BrandProperties brandProperties;
+    private final SessionRepository sessionRepository;
 
     public PassportService(PassportRepository passportRepository, PassportStampRepository stampRepository,
                             SavedItemRepository savedItemRepository, ZoneCatalog zoneCatalog,
-                            PassportTier passportTier, IntentService intentService, BrandProperties brandProperties) {
+                            PassportTier passportTier, IntentService intentService, BrandProperties brandProperties,
+                            SessionRepository sessionRepository) {
         this.passportRepository = passportRepository;
         this.stampRepository = stampRepository;
         this.savedItemRepository = savedItemRepository;
@@ -45,12 +49,15 @@ public class PassportService {
         this.passportTier = passportTier;
         this.intentService = intentService;
         this.brandProperties = brandProperties;
+        this.sessionRepository = sessionRepository;
     }
 
     @Transactional
     public PassportData issue(UUID sessionId, String popupId) {
+        sessionRepository.findLockedById(sessionId)
+                .orElseThrow(() -> EntryException.notFound("SESSION_NOT_FOUND", "세션을 찾을 수 없습니다."));
         Passport passport = passportRepository.findBySessionId(sessionId).orElseGet(() -> {
-            String passportNo = String.format("ENT-KR-%07d", passportRepository.count() + 1);
+            String passportNo = "ENT-KR-" + sessionId.toString().replace("-", "").toUpperCase(Locale.ROOT);
             Passport created = new Passport(sessionId, passportNo, popupId, brandProperties.getIssuedPlace(), Instant.now());
             return passportRepository.save(created);
         });
@@ -68,7 +75,9 @@ public class PassportService {
         Passport passport = passportRepository.findBySessionId(sessionId)
                 .orElseThrow(() -> EntryException.notFound("PASSPORT_NOT_FOUND", "패스포트가 아직 발급되지 않았습니다."));
 
-        if (stampRepository.findByPassportIdAndZoneId(passport.getId(), zoneId).isPresent()) {
+        String normalizedZoneId = zoneCatalog.require(zoneId).zoneId();
+
+        if (stampRepository.findByPassportIdAndZoneId(passport.getId(), normalizedZoneId).isPresent()) {
             throw EntryException.conflict("ZONE_ALREADY_STAMPED", "이미 검인된 구역입니다.");
         }
 
@@ -79,7 +88,7 @@ public class PassportService {
         });
 
         int rotationSeed = random.nextInt(100);
-        PassportStamp stamp = stampRepository.save(new PassportStamp(passport.getId(), zoneId, Instant.now(), rotationSeed));
+        PassportStamp stamp = stampRepository.save(new PassportStamp(passport.getId(), normalizedZoneId, Instant.now(), rotationSeed));
 
         List<PassportStamp> stamps = stampRepository.findByPassportIdOrderByStampedAtAsc(passport.getId());
         Set<String> visitedZoneIds = stamps.stream().map(PassportStamp::getZoneId).collect(Collectors.toSet());
@@ -88,7 +97,7 @@ public class PassportService {
         int currentTier = passportTier.tierFor(visitedZoneIds.size());
 
         return new StampResponse(
-                zoneId, stamp.getStampedAt(), rotationSeed, currentTier,
+                normalizedZoneId, stamp.getStampedAt(), rotationSeed, currentTier,
                 currentTier > previousTier,
                 passportTier.nextTierFor(currentTier, visitedZoneIds));
     }

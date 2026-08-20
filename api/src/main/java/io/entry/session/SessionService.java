@@ -54,4 +54,10 @@ public class SessionService {
         sessionRepository.save(session);
         return SessionData.of(session, false);
     }
+
+    public SessionData current(String sessionId) {
+        AnonymousSession session = sessionRepository.findById(UUID.fromString(sessionId))
+                .orElseThrow(() -> EntryException.notFound("SESSION_NOT_FOUND", "세션을 찾을 수 없습니다."));
+        return SessionData.of(session, false);
+    }
 }

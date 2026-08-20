@@ -16,8 +16,9 @@ entry:
     origins: ${ENTRY_CORS_ORIGINS:http://localhost:5173}
   ai:
     mock: ${ENTRY_AI_MOCK:true}
+    api-key: ${ANTHROPIC_API_KEY:}
     model: ${ENTRY_AI_MODEL:claude-sonnet-5}
-    timeout-seconds: 8
+    timeout-seconds: ${ENTRY_AI_TIMEOUT_SECONDS:8}
   brand:
     popup-id: ${ENTRY_BRAND_POPUP_ID:MCM-SEONGSU-2026}
     issued-place: ${ENTRY_BRAND_ISSUED_PLACE:SEOUL / SEONGSU}

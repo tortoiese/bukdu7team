@@ -24,6 +24,7 @@
 - `locale` enum: `ko | en | zh-Hant | ja`
 - 시각은 전부 ISO-8601 UTC
 - **세션이 유효하지 않으면 401을 반환하지 않고 새 세션을 발급해 `meta.sessionRotated=true`로 알린다**
+- 세션이 필요한 모든 응답은 실제 처리에 사용한 세션 ID를 `X-Entry-Session` 응답 헤더로 반환한다. 프론트는 이 값을 즉시 `localStorage["entry.sid"]`에 저장하며 별도 세션을 재발급하지 않는다.
 
 ---
 
@@ -51,6 +52,9 @@ Response `data`
 ### `PATCH /sessions/market`
 사용자가 시장/언어를 수동 변경.
 Request `{ "market": "JP", "locale": "ja" }` → `data`: 세션 객체
+
+### `GET /sessions/current`
+로컬에 저장된 세션을 화면 요청 전에 확정한다. 세션이 무효하면 서버가 새 세션을 발급하고, `data.sessionId`와 `X-Entry-Session` 응답 헤더에 같은 ID를 반환한다. 프론트는 이 요청이 끝난 뒤에만 스캔·제품 조회를 시작한다.
 
 ---
 
@@ -165,7 +169,7 @@ Response `data`
 ### `GET /passport`
 ```json
 {
-  "passportNo": "ENT-KR-0002841",
+  "passportNo": "ENT-KR-B1F2A7C48D194DA9A44AA1974E79A601",
   "issuedAt": "…", "issuedPlace": "SEOUL / SEONGSU",
   "popupId": "MCM-SEONGSU-2026",
   "zones": [
@@ -241,6 +245,9 @@ Request `{ "channel": "EMAIL", "value": "…" , "consent": true }` → `data { "
 ### `POST /conversations`
 Request `{ "scanId": "…" }` → `data { "conversationId": "…", "turnsRemaining": 3, "messages": [...] }`
 
+- `scanId`는 현재 세션에서 생성된 스캔이어야 한다. 다른 세션의 스캔은 `SCAN_NOT_FOUND`(404)로 처리한다.
+- 같은 스캔으로 다시 요청하면 기존 대화와 메시지를 복원한다.
+
 ### `POST /conversations/{id}/messages`
 Request `{ "text": "컬러요. 화이트가 관리 어려울 것 같아서" }`
 Response `data`
@@ -254,6 +261,7 @@ Response `data`
 ```
 - 3턴 초과 시 `handoffSuggested:true`, 직원 호출 안내로 전환하고 더 이상 생성하지 않는다
 - 캐릭터는 판매하지 않는다. 시스템 프롬프트에 "결정 기준 정리에 한정, 구매 권유 금지" 명시
+- `ENTRY_AI_MOCK=false`이고 `ANTHROPIC_API_KEY`가 있을 때만 외부 AI를 호출한다. 타임아웃·응답 형식 오류·키 누락 시 제품 정보 기반 규칙 답변으로 전환하고 `meta.fallback=true`를 반환한다.
 
 ---
 
@@ -324,6 +332,6 @@ Response `data`
 ## 12. 프론트 API 클라이언트 규칙
 
 - `web/src/features/<domain>/api.ts` 에 도메인별 함수. 컴포넌트에서 `fetch` 금지
-- 공통 `client.ts`가 세션 헤더 주입, `meta.sessionRotated` 처리, 에러 → `ApiError` 변환 담당
+- 공통 `client.ts`가 세션 요청 헤더 주입, 응답 `X-Entry-Session` 동기화, 에러 → `ApiError` 변환 담당
 - 타입은 `web/src/types/api.ts`에 이 문서와 1:1로 정의. 서버 enum과 문자열 리터럴 유니온을 맞춘다
 - `VITE_API_BASE` 환경변수 사용. 하드코딩된 localhost 금지

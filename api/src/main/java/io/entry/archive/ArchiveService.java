@@ -46,7 +46,7 @@ public class ArchiveService {
         String storeId = "KR-SEONGSU";
         String zoneId = "UNKNOWN";
         if (request.scanId() != null) {
-            ScanEvent scan = scanEventRepository.findById(UUID.fromString(request.scanId())).orElse(null);
+            ScanEvent scan = scanEventRepository.findById(parseScanId(request.scanId())).orElse(null);
             if (scan != null && scan.getSessionId().equals(sessionId)) {
                 storeId = scan.getStoreId();
                 zoneId = scan.getZoneId();
@@ -55,6 +55,14 @@ public class ArchiveService {
 
         savedItemRepository.save(new SavedItem(sessionId, request.productId(), storeId, zoneId, Instant.now()));
         return savedItemRepository.countBySessionId(sessionId);
+    }
+
+    private UUID parseScanId(String rawScanId) {
+        try {
+            return UUID.fromString(rawScanId);
+        } catch (IllegalArgumentException ex) {
+            throw io.entry.common.EntryException.badRequest("INVALID_SCAN_ID", "scanId 형식을 확인해주세요.");
+        }
     }
 
     @Transactional
