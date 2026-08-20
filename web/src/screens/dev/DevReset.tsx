@@ -22,6 +22,7 @@ export default function DevReset() {
 
   async function resetOnly() {
     localStorage.removeItem('entry.sid')
+    sessionStorage.removeItem('entry.passportCoverSeen')
     setLog([])
     setBusy(true)
     await reissue()
@@ -33,6 +34,7 @@ export default function DevReset() {
     setBusy(true)
     setLog([])
     localStorage.removeItem('entry.sid')
+    sessionStorage.removeItem('entry.passportCoverSeen')
     await reissue()
     await setMarket('HK', 'zh-Hant')
     append('시장을 HK로 전환했습니다.')
@@ -48,6 +50,7 @@ export default function DevReset() {
     setBusy(true)
     setLog([])
     localStorage.removeItem('entry.sid')
+    sessionStorage.removeItem('entry.passportCoverSeen')
     await reissue()
     await issuePassport(brand.popupId, brand.originStore.storeId)
     append('패스포트를 발급했습니다.')
@@ -67,6 +70,7 @@ export default function DevReset() {
     setBusy(true)
     setLog([])
     localStorage.removeItem('entry.sid')
+    sessionStorage.removeItem('entry.passportCoverSeen')
     await reissue()
     append('빈 상태 세션을 발급했습니다.')
     setBusy(false)
@@ -76,7 +80,7 @@ export default function DevReset() {
   return (
     <div className="theme-light min-h-screen bg-bone-050 px-8 py-8">
       <div className="mx-auto flex max-w-[600px] flex-col gap-6">
-        <Link to="/" className="t-label underline underline-offset-4" style={{ color: 'var(--graphite)' }}>
+        <Link to="/admin" className="t-label underline underline-offset-4" style={{ color: 'var(--graphite)' }}>
           메뉴로
         </Link>
         <h1 className="t-display-m">DEV RESET</h1>

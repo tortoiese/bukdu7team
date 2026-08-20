@@ -37,10 +37,12 @@ export const router = createBrowserRouter([
       { path: '/entryadmin', element: <AdminLogin /> },
       { path: '/admin', element: <AdminAuthGuard><Admin /></AdminAuthGuard> },
       { path: '/admin/personas', element: <AdminAuthGuard><PersonaConsole /></AdminAuthGuard> },
-      { path: '/dev/kitchen-sink', element: <KitchenSink /> },
-      { path: '/dev/qr', element: <QrSheet /> },
-      { path: '/dev/admin-qr', element: <AdminQr /> },
-      { path: '/dev/reset', element: <DevReset /> },
+      // /dev/* 전부 관리자 인증 필요 — 게스트는 QR로 /s/:productId, /z/:zoneId에만 진입하므로
+      // 이 경로들을 만날 일이 없어야 한다.
+      { path: '/dev/kitchen-sink', element: <AdminAuthGuard><KitchenSink /></AdminAuthGuard> },
+      { path: '/dev/qr', element: <AdminAuthGuard><QrSheet /></AdminAuthGuard> },
+      { path: '/dev/admin-qr', element: <AdminAuthGuard><AdminQr /></AdminAuthGuard> },
+      { path: '/dev/reset', element: <AdminAuthGuard><DevReset /></AdminAuthGuard> },
     ],
   },
 ])

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useSearchParams, Link } from 'react-router-dom'
 import MobileFrame from '../components/MobileFrame'
+import PassportCover from '../components/PassportCover'
 import CharacterBubble from '../components/CharacterBubble'
 import { FieldGrid } from '../components/Field'
 import HairlineSection from '../components/HairlineSection'
@@ -56,6 +57,9 @@ export default function ScanResult() {
   const [loadError, setLoadError] = useState(false)
   const [savedCount, setSavedCount] = useState<number | null>(null)
   const [toast, setToast] = useState<[string, string?] | null>(null)
+  // QR로 도착할 때마다(=마운트마다) 매대 태그를 처음 대는 순간처럼 표지가 먼저 뜬다.
+  // 패스포트(P2)와 달리 세션당 1회 제한은 두지 않는다 — 스캔마다 다른 실물 태그를 댄 결과이므로.
+  const [coverOpen, setCoverOpen] = useState(false)
 
   // 진입 시 1회: 스캔 이벤트 기록(POST /scans). 시장 전환과는 무관하게 한 번만 발생해야 한다.
   // 데모 모드(?demo=1 또는 네트워크 실패 후 자동 전환)에서는 호출 없이 고정 데이터를 쓴다.
@@ -174,7 +178,8 @@ export default function ScanResult() {
 
   return (
     <MobileFrame>
-      <div className="flex flex-1 flex-col gap-6 pb-[64px] pt-6">
+      <PassportCover isOpen={coverOpen} onOpen={() => setCoverOpen(true)} />
+      <div aria-hidden={!coverOpen} className="flex flex-1 flex-col gap-6 pb-[64px] pt-6">
         <div className="flex justify-end">
           <Button variant="text" aria-label={t('common.marketSwitch')} onClick={() => void handleMarketSwitch()}>
             {market}

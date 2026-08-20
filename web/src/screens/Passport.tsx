@@ -18,6 +18,8 @@ import { getArchive } from '../features/archive/api'
 import brand from '../brand/mcm.json'
 import type { ArchiveItem, PassportData, PassportZone } from '../types/api'
 
+const COVER_SEEN_KEY = 'entry.passportCoverSeen'
+
 interface ZoneCellProps {
   zone: PassportZone
 }
@@ -50,8 +52,15 @@ export default function Passport() {
   const [issuing, setIssuing] = useState(false)
   const [previewItems, setPreviewItems] = useState<ArchiveItem[]>([])
   const [toast, setToast] = useState<[string, string?] | null>(null)
-  const [coverOpen, setCoverOpen] = useState(false)
+  // 표지 펼치기 연출은 이번 세션에서 처음 볼 때만 보여준다. 그렇지 않으면 구역 검인/저장 직후
+  // 패스포트로 넘어왔을 때 방금 반영된 내용이 닫힌 표지 뒤에 가려져 "반영이 안 됐다"로 보인다.
+  const [coverOpen, setCoverOpen] = useState(() => sessionStorage.getItem(COVER_SEEN_KEY) === '1')
   const consumedTierState = useRef(false)
+
+  function handleCoverOpen() {
+    sessionStorage.setItem(COVER_SEEN_KEY, '1')
+    setCoverOpen(true)
+  }
 
   function load() {
     getPassport()
@@ -133,7 +142,7 @@ export default function Passport() {
 
   return (
     <MobileFrame>
-      <PassportCover isOpen={coverOpen} onOpen={() => setCoverOpen(true)} passportNo={passport.passportNo} />
+      <PassportCover isOpen={coverOpen} onOpen={handleCoverOpen} passportNo={passport.passportNo} />
       {/* 패스포트 실물 문서 스코프. 다크 앱 크롬과 대비되는 밝은 "내지" 카드로 전체 화면 폭까지 번져 보이게 한다(피그마 P2 참조). */}
       <div
         aria-hidden={!coverOpen}

@@ -24,12 +24,8 @@ const CUSTOMER_SCREENS: NavItem[] = [
   { label: 'P8 · 사전 등록', path: '/register' },
 ]
 
-// D1/D2 운영자 화면은 이 메뉴에 올리지 않는다 — /entryadmin 비밀번호 진입으로만 접근한다.
-const DEV_TOOLS: NavItem[] = [
-  { label: '컴포넌트 모음', path: '/dev/kitchen-sink' },
-  { label: 'QR 인쇄 시트', path: '/dev/qr' },
-  { label: '리허설 리셋', path: '/dev/reset' },
-]
+// D1/D2, /dev/* 전부 이 메뉴에 올리지 않는다 — /entryadmin 비밀번호 진입 후 D1(Admin.tsx)에서만
+// 접근한다. 이 화면은 게스트가 QR 없이 루트로 들어왔을 때 보는 순수 고객 화면 메뉴다.
 
 function NavList({ items }: { items: NavItem[] }) {
   return (
@@ -79,10 +75,6 @@ export default function Home() {
 
         <HairlineSection title="고객 화면 (P1~P8)">
           <NavList items={CUSTOMER_SCREENS} />
-        </HairlineSection>
-
-        <HairlineSection title="개발 도구">
-          <NavList items={DEV_TOOLS} />
         </HairlineSection>
       </div>
     </MobileFrame>

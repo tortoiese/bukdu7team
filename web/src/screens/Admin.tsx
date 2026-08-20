@@ -241,6 +241,27 @@ export default function Admin() {
             </ul>
           </div>
         )}
+
+        {/* /dev/* 는 여기서만 링크한다 — 게스트 메뉴(Home.tsx)에는 올리지 않는다. */}
+        <div className="border-t p-4" style={{ borderColor: 'var(--hairline)' }}>
+          <h2 className="t-label mb-2" style={{ color: 'var(--graphite)' }}>
+            개발 도구
+          </h2>
+          <div className="flex flex-wrap gap-6">
+            <Link to="/dev/kitchen-sink" className="t-label underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+              컴포넌트 모음
+            </Link>
+            <Link to="/dev/qr" className="t-label underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+              게스트 QR 시트
+            </Link>
+            <Link to="/dev/admin-qr" className="t-label underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+              관리자 QR
+            </Link>
+            <Link to="/dev/reset" className="t-label underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
+              리허설 리셋
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   )

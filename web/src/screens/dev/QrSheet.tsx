@@ -58,7 +58,7 @@ export default function QrSheet() {
       <div className="mx-auto max-w-[1000px]">
         <div className="print:hidden mb-6 flex items-center justify-between">
           <div>
-            <Link to="/" className="t-label underline underline-offset-4" style={{ color: 'var(--graphite)' }}>
+            <Link to="/admin" className="t-label underline underline-offset-4" style={{ color: 'var(--graphite)' }}>
               메뉴로
             </Link>
             <h1 className="t-display-m mt-1">ENTRY QR SHEET</h1>
