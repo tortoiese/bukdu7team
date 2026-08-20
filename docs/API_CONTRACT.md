@@ -8,6 +8,7 @@
 
 - Base URL: `{API_BASE}/api/v1`
 - 모든 요청 헤더: `X-Entry-Session: <uuid>` (첫 세션 발급 요청만 예외)
+- D1/D2(`/admin/**`, `/personas/**`)는 추가로 `X-Entry-Admin-Token: <uuid>` 헤더 필요(10장 참고)
 - 응답 래퍼
 
 ```json
@@ -296,6 +297,17 @@ Response `data { "slot": "PRIORITY_ENTRY", "timeWindow": "11:00–12:00", "code"
 ---
 
 ## 10. 대시보드 (D1)
+
+**D1/D2(`/admin/**`, `/personas/**`)는 `X-Entry-Admin-Token` 헤더가 없으면 전부 401
+`ADMIN_AUTH_REQUIRED`를 반환한다.** 게스트 세션(`X-Entry-Session`)과 별도 층위이며, 세션처럼
+자동 재발급되지 않는다 — 프론트는 401을 받으면 토큰을 지우고 `/entryadmin`으로 보낸다.
+
+### `POST /admin/login`
+관리자 인증. `X-Entry-Admin-Token` 없이 호출 가능(로그인 자체는 예외).
+Request `{ "password": "entryadmin" }`
+Response `data { "adminToken": "…", "expiresAt": "2026-08-21T00:00:00Z" }`
+실패 시 401 `{ "error": { "code": "ADMIN_PASSWORD_INVALID", "message": "…" } }`
+`adminToken`은 이후 모든 D1/D2 요청에 `X-Entry-Admin-Token` 헤더로 첨부한다.
 
 ### `GET /admin/intent-dashboard?popupId=…&from=…&to=…`
 ```json

@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import Loading from '../components/Loading'
 import { useT } from '../i18n'
 import { getIntentDashboard } from '../features/admin/api'
+import { useAdminAuthStore } from '../features/adminAuth/store'
+import { ApiError } from '../features/client'
 import type { IntentDashboardData } from '../types/api'
 
 type SortKey = 'productId' | 'scans' | 'rescanRate' | 'saveRate' | 'conversionRate'
@@ -28,13 +30,24 @@ function pct(value: number): string {
 // D1 의도 대시보드. 고객 화면과 달리 여권 은유를 쓰지 않는다(DESIGN_SYSTEM.md 9장).
 export default function Admin() {
   const t = useT()
+  const navigate = useNavigate()
+  const logout = useAdminAuthStore((s) => s.logout)
   const [data, setData] = useState<IntentDashboardData | null>(null)
   const [error, setError] = useState(false)
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: 'scans', dir: -1 })
 
   useEffect(() => {
-    getIntentDashboard().then(setData).catch(() => setError(true))
-  }, [])
+    getIntentDashboard()
+      .then(setData)
+      .catch((err: unknown) => {
+        if (err instanceof ApiError && err.code === 'ADMIN_AUTH_REQUIRED') {
+          logout()
+          navigate('/entryadmin', { replace: true })
+          return
+        }
+        setError(true)
+      })
+  }, [logout, navigate])
 
   function toggleSort(key: SortKey) {
     setSort((prev) => (prev.key === key ? { key, dir: prev.dir === 1 ? -1 : 1 } : { key, dir: -1 }))
@@ -85,6 +98,17 @@ export default function Admin() {
             <Link to="/admin/personas" className="t-label underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
               {t('d1.viewPersonas')}
             </Link>
+            <button
+              type="button"
+              onClick={() => {
+                logout()
+                navigate('/entryadmin', { replace: true })
+              }}
+              className="t-label underline underline-offset-4"
+              style={{ color: 'var(--graphite)' }}
+            >
+              {t('adminAuth.logout')}
+            </button>
             <Link to="/" className="t-label underline underline-offset-4" style={{ color: 'var(--graphite)' }}>
               {t('nav.backToMenu')}
             </Link>

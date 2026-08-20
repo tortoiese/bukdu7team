@@ -3,6 +3,7 @@
 import type { ApiErrorBody, ApiResponse } from '../types/api'
 import { useSessionStore } from './session/store'
 import { useDemoStore } from './demo/store'
+import { useAdminAuthStore } from './adminAuth/store'
 
 const API_BASE = import.meta.env.VITE_API_BASE as string
 
@@ -31,6 +32,9 @@ export async function apiRequest<T>(path: string, options: RequestOptions = {}):
     const sessionId = useSessionStore.getState().sessionId
     if (sessionId) headers['X-Entry-Session'] = sessionId
   }
+  // D1/D2(/admin/**, /personas/**) 전용 헤더. 그 외 엔드포인트에는 백엔드가 무시한다.
+  const adminToken = useAdminAuthStore.getState().adminToken
+  if (adminToken) headers['X-Entry-Admin-Token'] = adminToken
 
   let res: Response
   try {

@@ -26,6 +26,7 @@ services:
       ENTRY_AI_OPENAI_MODEL: ${ENTRY_AI_OPENAI_MODEL:-gpt-4o}
       ENTRY_CORS_ORIGINS: ${ENTRY_CORS_ORIGINS:-http://localhost}
       ENTRY_WEB_ORIGIN: ${ENTRY_WEB_ORIGIN:-http://localhost}
+      ENTRY_ADMIN_PASSWORD: ${ENTRY_ADMIN_PASSWORD:-entryadmin}
     depends_on:
       - postgres
     restart: unless-stopped

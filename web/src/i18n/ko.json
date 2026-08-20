@@ -51,6 +51,8 @@
   "p2.stampFailTitle": "검인을 완료하지 못했습니다.",
   "p2.stampAlready": "이미 검인된 구역입니다.",
   "p2.stampTooSoon": "검인 간 최소 60초 간격이 필요합니다.",
+  "p2.coverOpen": "패스포트 펼치기",
+  "p2.coverTapHint": "탭하여 펼치기",
 
   "p3.viewedToday": "오늘 살펴본 제품",
   "p3.interestTrend": "관심 경향",
@@ -153,5 +155,11 @@
   "d2.loadFail": "시뮬레이션을 실행하지 못했습니다.",
   "d2.savedYes": "저장함",
   "d2.savedNo": "저장 안 함",
-  "d2.viewDashboard": "의도 대시보드로"
+  "d2.viewDashboard": "의도 대시보드로",
+
+  "adminAuth.title": "운영자 인증",
+  "adminAuth.passwordLabel": "비밀번호",
+  "adminAuth.submit": "입장",
+  "adminAuth.invalid": "비밀번호가 올바르지 않습니다.",
+  "adminAuth.logout": "로그아웃"
 }

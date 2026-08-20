@@ -31,6 +31,12 @@ export interface SessionData {
   createdAt: string
 }
 
+// ── 운영자 인증 (D1/D2, /entryadmin) ────────────────
+export interface AdminLoginResponse {
+  adminToken: string
+  expiresAt: string
+}
+
 // ── 제품 · 스캔 (P1) ──────────────────────────────
 export type StockStatusCode = 'IN_STOCK' | 'TRANSFERABLE' | 'ONLINE_ONLY' | 'OUT_OF_STOCK'
 

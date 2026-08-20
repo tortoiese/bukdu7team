@@ -24,11 +24,7 @@ const CUSTOMER_SCREENS: NavItem[] = [
   { label: 'P8 · 사전 등록', path: '/register' },
 ]
 
-const ADMIN_SCREENS: NavItem[] = [
-  { label: 'D1 · 의도 대시보드', path: '/admin' },
-  { label: 'D2 · 페르소나봇 콘솔', path: '/admin/personas' },
-]
-
+// D1/D2 운영자 화면은 이 메뉴에 올리지 않는다 — /entryadmin 비밀번호 진입으로만 접근한다.
 const DEV_TOOLS: NavItem[] = [
   { label: '컴포넌트 모음', path: '/dev/kitchen-sink' },
   { label: 'QR 인쇄 시트', path: '/dev/qr' },
@@ -83,10 +79,6 @@ export default function Home() {
 
         <HairlineSection title="고객 화면 (P1~P8)">
           <NavList items={CUSTOMER_SCREENS} />
-        </HairlineSection>
-
-        <HairlineSection title="운영자 화면 (D1~D2)">
-          <NavList items={ADMIN_SCREENS} />
         </HairlineSection>
 
         <HairlineSection title="개발 도구">

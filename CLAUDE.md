@@ -81,10 +81,16 @@ entry/
 | P6 | 대화 이어가기 | `/talk/:scanId` | P1 |
 | P7 | 어드바이저 뷰 | `/advisor/:grantToken` | P2 |
 | P8 | 사전 등록 | `/register` | P1 |
-| D1 | 의도 대시보드 | `/admin` | P1 |
-| D2 | 페르소나봇 콘솔 | `/admin/personas` | P2 |
+| D1 | 의도 대시보드 | `/admin` (비밀번호 필요) | P1 |
+| D2 | 페르소나봇 콘솔 | `/admin/personas` (비밀번호 필요) | P2 |
+| — | 운영자 로그인 | `/entryadmin` | P1 |
 
 P1~P8은 **모바일 전용 레이아웃(기준 402×874)**. D1~D2만 데스크톱 레이아웃.
+
+**D1/D2는 게스트 메뉴(`/`)에 노출하지 않는다.** 2026-08-20 팀 결정: `/entryadmin`에서
+`ENTRY_ADMIN_PASSWORD`(기본값 `entryadmin`, 배포 시 반드시 변경)로 로그인해야 `/admin`,
+`/admin/personas`에 들어갈 수 있다. 게스트 QR/URL(`/s/:productId`, `/z/:zoneId`, `/dev/qr`)과
+운영자 QR/URL(`/entryadmin`, `/dev/admin-qr`)은 완전히 분리된 별도 진입점이다.
 
 ---
 

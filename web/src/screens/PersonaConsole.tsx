@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import HairlineSection from '../components/HairlineSection'
 import Button from '../components/Button'
 import Loading from '../components/Loading'
 import { useT } from '../i18n'
 import { getPersonas, simulatePersona } from '../features/persona/api'
+import { useAdminAuthStore } from '../features/adminAuth/store'
+import { ApiError } from '../features/client'
 import type { Persona, PersonaSimulationResult } from '../types/api'
 
 const HYPOTHESES = ['H1', 'H2', 'H3', 'H4', 'H5']
@@ -12,6 +14,8 @@ const HYPOTHESES = ['H1', 'H2', 'H3', 'H4', 'H5']
 // D2 페르소나봇 콘솔. 여권 은유 없이 밀도 높은 운영 도구 레이아웃을 쓴다(DESIGN_SYSTEM.md 9장).
 export default function PersonaConsole() {
   const t = useT()
+  const navigate = useNavigate()
+  const logout = useAdminAuthStore((s) => s.logout)
   const [personas, setPersonas] = useState<Persona[] | null>(null)
   const [selectedPersona, setSelectedPersona] = useState<string | null>(null)
   const [hypothesis, setHypothesis] = useState(HYPOTHESES[0]!)
@@ -28,8 +32,15 @@ export default function PersonaConsole() {
         setPersonas(list)
         setSelectedPersona(list[0]?.id ?? null)
       })
-      .catch(() => setError(true))
-  }, [])
+      .catch((err: unknown) => {
+        if (err instanceof ApiError && err.code === 'ADMIN_AUTH_REQUIRED') {
+          logout()
+          navigate('/entryadmin', { replace: true })
+          return
+        }
+        setError(true)
+      })
+  }, [logout, navigate])
 
   async function handleRun() {
     if (!selectedPersona) return
@@ -62,6 +73,17 @@ export default function PersonaConsole() {
             <Link to="/admin" className="t-label underline underline-offset-4" style={{ color: 'var(--ink-700)' }}>
               {t('d2.viewDashboard')}
             </Link>
+            <button
+              type="button"
+              onClick={() => {
+                logout()
+                navigate('/entryadmin', { replace: true })
+              }}
+              className="t-label underline underline-offset-4"
+              style={{ color: 'var(--graphite)' }}
+            >
+              {t('adminAuth.logout')}
+            </button>
             <Link to="/" className="t-label underline underline-offset-4" style={{ color: 'var(--graphite)' }}>
               {t('nav.backToMenu')}
             </Link>

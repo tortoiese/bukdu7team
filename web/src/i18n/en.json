@@ -51,6 +51,8 @@
   "p2.stampFailTitle": "Could not complete the stamp.",
   "p2.stampAlready": "This zone has already been stamped.",
   "p2.stampTooSoon": "Stamps need at least 60 seconds between them.",
+  "p2.coverOpen": "Open passport",
+  "p2.coverTapHint": "Tap to open",
 
   "p3.viewedToday": "Viewed today",
   "p3.interestTrend": "Interest trend",
@@ -153,5 +155,11 @@
   "d2.loadFail": "Could not run the simulation.",
   "d2.savedYes": "Saved",
   "d2.savedNo": "Not saved",
-  "d2.viewDashboard": "View intent dashboard"
+  "d2.viewDashboard": "View intent dashboard",
+
+  "adminAuth.title": "Operator sign-in",
+  "adminAuth.passwordLabel": "Password",
+  "adminAuth.submit": "Enter",
+  "adminAuth.invalid": "That password isn't correct.",
+  "adminAuth.logout": "Log out"
 }
