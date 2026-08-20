@@ -8,9 +8,9 @@ interface PassportCoverProps {
 }
 
 // P2 진입 시 덮여 있다가 탭하면 책처럼 왼쪽 경첩을 축으로 펼쳐지며 실물 문서(Passport.tsx의
-// .theme-light 패널)가 드러난다. 대한민국 여권 표지의 골드 프레임 · 중앙 원형 문장 · 워드마크
-// 배치를 참고하되, 국장(무궁화 문장)은 쓰지 않고 ENTRY 고유의 추상 마크(이중 원 + 게이트 형상)로
-// 대체한다 — CLAUDE.md "실제 저작물을 외부에서 가져오지 않는다"에 맞춘 원본 그래픽.
+// .theme-light 패널)가 드러난다. 대한민국 여권 표지의 골드 프레임 · 중앙 문장 · 워드마크 배치를
+// 참고하되, 문장 자리에는 ENTRY 자체 로고(logo.jpg에서 열쇠 모양 배지만 배경 제거해 추출,
+// web/public/assets/brand/entry-mark.png)를 쓴다 — 팀이 직접 만든 자산이라 저작권 문제가 없다.
 export default function PassportCover({ isOpen, onOpen, passportNo }: PassportCoverProps) {
   const t = useT()
   const reduceMotion = useReducedMotion()
@@ -43,11 +43,7 @@ export default function PassportCover({ isOpen, onOpen, passportNo }: PassportCo
           <span aria-hidden="true" style={{ position: 'absolute', inset: 18, border: '1px solid var(--cognac)' }} />
 
           <div className="flex flex-col items-center gap-6">
-            <svg width="88" height="88" viewBox="0 0 88 88" aria-hidden="true">
-              <circle cx="44" cy="44" r="40" fill="none" stroke="var(--cognac)" strokeWidth="1.5" />
-              <circle cx="44" cy="44" r="33" fill="none" stroke="var(--cognac)" strokeWidth="0.75" />
-              <path d="M28 55 V38 Q28 25 44 25 Q60 25 60 38 V55" fill="none" stroke="var(--cognac)" strokeWidth="2" />
-            </svg>
+            <img src="/assets/brand/entry-mark.png" alt="" aria-hidden="true" width={88} height={99} style={{ width: 88, height: 'auto' }} />
             <div className="text-center">
               <p className="t-display-l" style={{ color: 'var(--cognac)', letterSpacing: '0.08em' }}>
                 {t('common.health.title')}
